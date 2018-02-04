@@ -3,7 +3,6 @@
 ".\objects\sys.o"
 ".\objects\delay.o"
 ".\objects\boottask.o"
-".\objects\led.o"
 ".\objects\clock.o"
 ".\objects\can.o"
 ".\objects\communication.o"

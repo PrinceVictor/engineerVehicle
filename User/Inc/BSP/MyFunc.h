@@ -5,13 +5,14 @@
 #include "sys.h" 
 #include "delay.h"
 #include <stdio.h>
+#include <stdint.h>
 #include "math.h"
 
 //绝对值
 #define abs(x) ((x)>0? (x):(-(x)))
 
 //最大最小值
-float Amplitude_Limiting(uint8_t flag , float input , float High , float Low);
+float AmplitudeLimiting(uint8_t flag , float input , float High , float Low);
 
 //2016 分段PID
 float Subsection_PID(uint8_t flag , float raw , uint8_t num , float * K , float * Scale);

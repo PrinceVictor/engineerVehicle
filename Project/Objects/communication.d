@@ -1,8 +1,9 @@
 .\objects\communication.o: ..\User\Src\BSP\Communication.c
 .\objects\communication.o: ..\User\Inc\BSP\Communication.h
-.\objects\communication.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdint.h
+.\objects\communication.o: ..\User\Inc\BSP\MyFunc.h
 .\objects\communication.o: ..\Libraries\stm32f4xx.h
 .\objects\communication.o: ..\Libraries\core_cm4.h
+.\objects\communication.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdint.h
 .\objects\communication.o: ..\Libraries\core_cmInstr.h
 .\objects\communication.o: ..\Libraries\core_cmFunc.h
 .\objects\communication.o: ..\Libraries\core_cm4_simd.h
@@ -35,3 +36,8 @@
 .\objects\communication.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\communication.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\communication.o: ..\Libraries\stm32f4xx_fsmc.h
+.\objects\communication.o: ..\User\Inc\BSP\sys.h
+.\objects\communication.o: ..\User\Inc\BSP\delay.h
+.\objects\communication.o: ..\Libraries\sys.h
+.\objects\communication.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
+.\objects\communication.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h

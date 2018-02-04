@@ -15,7 +15,7 @@ float my_max( float a , float b )
 }
 
 //ÏŞ·ùÊä³ö
-float Amplitude_Limiting(uint8_t flag , float input , float High , float Low)
+float AmplitudeLimiting(uint8_t flag , float input , float High , float Low)
 {
 	float result;
 	

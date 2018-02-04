@@ -35,4 +35,8 @@
 .\objects\myfunc.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\myfunc.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\myfunc.o: ..\Libraries\stm32f4xx_fsmc.h
+.\objects\myfunc.o: ..\User\Inc\BSP\sys.h
+.\objects\myfunc.o: ..\User\Inc\BSP\delay.h
+.\objects\myfunc.o: ..\Libraries\sys.h
 .\objects\myfunc.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
+.\objects\myfunc.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h

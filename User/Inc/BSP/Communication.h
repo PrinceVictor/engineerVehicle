@@ -3,6 +3,9 @@
 
 #include "MyFunc.h"
 
+void can2Config(void);
+void RemoteConfig(void);
+
 #define YAW_SENSITY 0.050f		// Û±Íyaw÷·¡È√Ù∂»
 #define PITCH_SENSITY 0.03f	// Û±Ípitch÷·¡È√Ù∂»
 

@@ -1,5 +1,6 @@
 .\objects\chassistask.o: ..\User\Src\Task\ChassisTask.c
 .\objects\chassistask.o: ..\User\Inc\Task\ChassisTask.h
+.\objects\chassistask.o: ..\User\Inc\BSP\MyFunc.h
 .\objects\chassistask.o: ..\Libraries\stm32f4xx.h
 .\objects\chassistask.o: ..\Libraries\core_cm4.h
 .\objects\chassistask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdint.h
@@ -35,4 +36,9 @@
 .\objects\chassistask.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\chassistask.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\chassistask.o: ..\Libraries\stm32f4xx_fsmc.h
+.\objects\chassistask.o: ..\User\Inc\BSP\sys.h
+.\objects\chassistask.o: ..\User\Inc\BSP\delay.h
+.\objects\chassistask.o: ..\Libraries\sys.h
 .\objects\chassistask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
+.\objects\chassistask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h
+.\objects\chassistask.o: ..\User\Inc\Task\PidTask.h

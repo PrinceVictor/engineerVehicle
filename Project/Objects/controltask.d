@@ -38,12 +38,7 @@
 .\objects\controltask.o: ..\Libraries\stm32f4xx_fsmc.h
 .\objects\controltask.o: ..\User\Inc\BSP\delay.h
 .\objects\controltask.o: ..\User\Inc\BSP\BootTask.h
+.\objects\controltask.o: ..\User\Inc\BSP\MyFunc.h
 .\objects\controltask.o: ..\User\Inc\BSP\sys.h
-.\objects\controltask.o: ..\User\Inc\BSP\Led.h
-.\objects\controltask.o: ..\User\Inc\BSP\Can.h
-.\objects\controltask.o: ..\User\Inc\IMU\I2C.h
-.\objects\controltask.o: ..\User\Inc\IMU\6050.h
-.\objects\controltask.o: ..\User\Inc\BSP\Clock.h
-.\objects\controltask.o: ..\User\Inc\Referee\referee.h
 .\objects\controltask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
-.\objects\controltask.o: ..\User\Inc\BSP\clock.h
+.\objects\controltask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h

@@ -4,11 +4,17 @@
 #include "MyFunc.h"
 #include "PidTask.h"
 
+
+
 typedef struct wheelPara{
 	_pidStructure Pid;
-	float pos
-	
-}wheelPara;
+	int16_t fbSpeed[4];
+	int16_t fbPostion[4];
+	float targetSpeed[4];
+	float out[4];
+}_wheelPara;
+
+
 struct Chassis_Info
 {
 	uint8_t Anaconda_flag;

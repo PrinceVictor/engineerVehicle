@@ -1,6 +1,6 @@
 .\objects\pidtask.o: ..\User\Src\Task\PidTask.c
 .\objects\pidtask.o: ..\User\Inc\Task\PidTask.h
-.\objects\pidtask.o: ..\Libraries\sys.h
+.\objects\pidtask.o: ..\User\Inc\BSP\MyFunc.h
 .\objects\pidtask.o: ..\Libraries\stm32f4xx.h
 .\objects\pidtask.o: ..\Libraries\core_cm4.h
 .\objects\pidtask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdint.h
@@ -36,14 +36,8 @@
 .\objects\pidtask.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\pidtask.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\pidtask.o: ..\Libraries\stm32f4xx_fsmc.h
-.\objects\pidtask.o: ..\User\Inc\BSP\delay.h
-.\objects\pidtask.o: ..\User\Inc\BSP\BootTask.h
 .\objects\pidtask.o: ..\User\Inc\BSP\sys.h
-.\objects\pidtask.o: ..\User\Inc\BSP\Led.h
-.\objects\pidtask.o: ..\User\Inc\BSP\Can.h
-.\objects\pidtask.o: ..\User\Inc\IMU\I2C.h
-.\objects\pidtask.o: ..\User\Inc\IMU\6050.h
-.\objects\pidtask.o: ..\User\Inc\BSP\Clock.h
-.\objects\pidtask.o: ..\User\Inc\Referee\referee.h
+.\objects\pidtask.o: ..\User\Inc\BSP\delay.h
+.\objects\pidtask.o: ..\Libraries\sys.h
 .\objects\pidtask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
-.\objects\pidtask.o: ..\User\Inc\BSP\clock.h
+.\objects\pidtask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h
