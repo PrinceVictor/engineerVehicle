@@ -1,61 +1,51 @@
-#ifndef __CHASSIS_CONTROL_H__
-#define __CHASSIS_CONTROL_H__
+#ifndef __CHASSISTASK_H__
+#define __CHASSISTASK_H__
 
 #include "MyFunc.h"
 #include "PidTask.h"
 
+typedef struct{
+	float target;
+	float temp;
+	float angle;
+}_chassisYaw;
 
+typedef struct{
+	float Fb;
+	float Lr;
+	float Rt;
+	float x,y;
+	_chassisYaw yaw;
+	_pidStructure pid;
+}_chassis;
+
+typedef struct{
+	int16_t Speed[4];
+	int16_t Postion[4];
+}_feedback;
 
 typedef struct wheelPara{
-	_pidStructure Pid;
-	int16_t fbSpeed[4];
-	int16_t fbPostion[4];
+	_pidStructure pid;
+	_feedback feedback;
+	float speedLimit;
+	float Kspeed;
 	float targetSpeed[4];
+	float direction[4];
 	float out[4];
 }_wheelPara;
 
+extern _wheelPara wheelInfo;
+extern _chassis chassisPara;
+extern float wheelpid[];
+extern float chassispid[];
 
-struct Chassis_Info
-{
-	uint8_t Anaconda_flag;
-	
-	int16_t Chassis_angle_raw;
-	
-	
-	float Chassis_angle_Target;
-	float Chassis_angle;
-	
-	float Chassis_out;
+int8_t chassisControl(uint8_t , _chassis*, _wheelPara*);
+int8_t wheelSolute(_wheelPara*, _chassis*);
+int8_t allParaInit(_wheelPara* , 
+										_chassis* , 
+										float* ,
+										float* );
 
-	
-};
-
-extern struct Chassis_Info Chassis_Control_Info;
-extern struct PID_PARA Chassis_para;
-volatile extern int16_t current_chassis_speed[3];
-volatile extern int16_t div_four[3];
-extern int16_t	chassis_f0;
-extern int16_t chassis_r0 ;
-extern int16_t chassis_y0 ; 
-extern int16_t f0 ;
-extern int16_t r0 ;
-extern int16_t y0 ; 
-extern int time_ms_angle;
-
-
-int8_t Chassis_Control(uint8_t);
-int8_t Chassis_Remote_Dispack(uint8_t flag);
-float AmplitudeCheck(float Angle , float limit);
-
-void remote_data_deal(uint8_t flag, float delta);
-
-void Chessis_Info_Init(void);
-
-void Lets_Rock(uint8_t flag);
-void Lets_Revolve(uint8_t Flag);
-void Anaconda(uint8_t flag);
-void SoftReset();
-void Angle_Attack();
 #endif
 
 

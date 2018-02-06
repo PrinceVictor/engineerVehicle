@@ -1,5 +1,5 @@
-.\objects\delay.o: ..\Mylib\BSP\delay.c
-.\objects\delay.o: ..\Mylib\BSP\delay.h
+.\objects\delay.o: ..\User\Src\BSP\delay.c
+.\objects\delay.o: ..\User\Inc\BSP\delay.h
 .\objects\delay.o: ..\Libraries\sys.h
 .\objects\delay.o: ..\Libraries\stm32f4xx.h
 .\objects\delay.o: ..\Libraries\core_cm4.h
@@ -36,4 +36,3 @@
 .\objects\delay.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\delay.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\delay.o: ..\Libraries\stm32f4xx_fsmc.h
-.\objects\delay.o: ..\Mylib\BSP\sys.h

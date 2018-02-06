@@ -1,4 +1,4 @@
-.\objects\i2c.o: ..\Mylib\IMU\I2C.c
+.\objects\i2c.o: ..\User\Src\IMU\I2C.c
 .\objects\i2c.o: ..\Libraries\stm32f4xx.h
 .\objects\i2c.o: ..\Libraries\core_cm4.h
 .\objects\i2c.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdint.h
@@ -34,4 +34,4 @@
 .\objects\i2c.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\i2c.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\i2c.o: ..\Libraries\stm32f4xx_fsmc.h
-.\objects\i2c.o: ..\Mylib\IMU\I2C.h
+.\objects\i2c.o: ..\User\Inc\IMU\I2C.h

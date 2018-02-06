@@ -1,11 +1,51 @@
-#ifndef __RAMP_H_
-#define __RAMP_H_
+#ifndef __COMUNICATETASK_H__
+#define __COMUNICATETASK_H__
 
-#include<stdint.h>
-#include "stm32f4xx.h" 
+#include "MyFunc.h"
+#include "PidTask.h"
+#include "ChassisTask.h"
+#include "stm32f4xx_can.h"
 
 
-typedef struct RampTime{
+#define YAW_SENSITY 0.050f		//鼠标yaw轴灵敏度
+#define PITCH_SENSITY 0.03f	//鼠标pitch轴灵敏度
+
+#define LEFT_LIMINT_ANGLE 40.0f //角度限制
+#define RIGHT_LIMINT_ANGLE -40.0f//角度限制
+
+typedef struct RC_Ctl
+{
+	struct
+	{
+		uint16_t ch0;
+		uint16_t ch1;
+		uint16_t ch2;
+		uint16_t ch3;
+		uint8_t s1;
+		uint8_t s2;
+	}rc;
+	struct
+	{
+		int16_t x;
+		int16_t y;
+		int16_t z;
+		uint8_t press_l;
+		uint8_t press_r;
+	}mouse;
+	struct
+	{
+		uint16_t v;
+	}key;
+	int8_t (*process)(struct RC_Ctl* data,
+										unsigned char* buffer);
+}_RC_Ctl;
+
+typedef struct canMessage{
+	CanTxMsg canTx;
+	CanRxMsg canRx;
+}_canMessage;
+
+typedef struct {
 		uint32_t lasttime;
 		uint32_t now;
 		uint32_t count;
@@ -14,28 +54,31 @@ typedef struct RampTime{
 		int isSameKey;
 		uint32_t cnt;
 		int32_t clock_cnt;
-}RampTime;
+}_RampTime;
 
+typedef struct{
+	_RampTime W;
+	_RampTime S;
+	_RampTime A;
+	_RampTime D;
+}_moveKey;
 
-extern RampTime RampTFB;
-extern RampTime RampTLF;
-extern RampTime Move_UD ;
-extern RampTime Move_LF ;
+int8_t canTrans(uint8_t, int8_t , _canMessage* , int16_t* );
+void transferType(int8_t , _canMessage* , int16_t* );
 
-float RampCal(RampTime *RampT);
+extern _canMessage canM;
 
-extern uint16_t NORMAL_FORWARD_BACK_SPEED;   //640
-extern uint16_t NORMAL_LEFT_RIGHT_SPEED;       //600
-extern const int32_t HIGH_FORWARD_BACK_SPEED; 	
-extern const int32_t HIGH_LEFT_RIGHT_SPEED;   
+int8_t readRemote(_RC_Ctl*, unsigned char* );
+int8_t commuiModeChange(int8_t* , _RC_Ctl* , _chassis* );
+int8_t computerControl(_RC_Ctl*,_chassis*);
+int8_t remoteControl(_RC_Ctl* , _chassis*);
+int8_t remoteImitate(_RC_Ctl*,_chassis*);
 
-extern 	int forward_back_speed ;
-extern  int left_right_speed;
-
-void ComputerControl(void);
-void Remote_Imitate(void);
+extern _RC_Ctl remote;
+float RampCal(_RampTime *RampT);
 
 #define Booting  0
 #define Running  1
 #define Stop     2
+
 #endif

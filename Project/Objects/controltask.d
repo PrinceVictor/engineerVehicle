@@ -1,6 +1,6 @@
 .\objects\controltask.o: ..\User\Src\Task\ControlTask.c
 .\objects\controltask.o: ..\User\Inc\Task\ControlTask.h
-.\objects\controltask.o: ..\Libraries\sys.h
+.\objects\controltask.o: ..\User\Inc\BSP\MyFunc.h
 .\objects\controltask.o: ..\Libraries\stm32f4xx.h
 .\objects\controltask.o: ..\Libraries\core_cm4.h
 .\objects\controltask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdint.h
@@ -36,9 +36,11 @@
 .\objects\controltask.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\controltask.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\controltask.o: ..\Libraries\stm32f4xx_fsmc.h
-.\objects\controltask.o: ..\User\Inc\BSP\delay.h
-.\objects\controltask.o: ..\User\Inc\BSP\BootTask.h
-.\objects\controltask.o: ..\User\Inc\BSP\MyFunc.h
 .\objects\controltask.o: ..\User\Inc\BSP\sys.h
+.\objects\controltask.o: ..\User\Inc\BSP\delay.h
+.\objects\controltask.o: ..\Libraries\sys.h
 .\objects\controltask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
 .\objects\controltask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h
+.\objects\controltask.o: ..\User\Inc\Task\ChassisTask.h
+.\objects\controltask.o: ..\User\Inc\Task\PidTask.h
+.\objects\controltask.o: ..\User\Inc\Task\ComunicateTask.h

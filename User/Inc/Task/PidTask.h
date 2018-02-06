@@ -20,6 +20,8 @@ typedef struct pidStructure{
 	float feedback;
 	float out;
 	float outLimit;
+	void	(*pidInit)(struct pidStructure* pid,
+										float* Kpid);
 	void	(*pGet)(struct pidStructure* pid,
 									float target,
 									float feedback);
@@ -33,4 +35,9 @@ typedef	struct pidDouble{
 	_pidStructure	core;	
 }_pidDouble;
 
+void pidGet(_pidStructure* , float , float );
+float pidCalculate(_pidStructure* , 
+										uint8_t ,
+										uint8_t );
+void pidInit(_pidStructure* , float* );
 #endif 

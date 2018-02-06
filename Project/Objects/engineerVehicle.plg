@@ -4,275 +4,63 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 E:\RM2018\engineerVehicle\Project\engineerVehicle.uvproj
-Project File Date:  02/04/2018
+Project File Date:  02/06/2018
 
 <h2>Output:</h2>
 Build target 'engineerVehicle'
 compiling main.c...
-..\User\Src\main.c(6): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\main.c(12): error:  #20: identifier "IsComputerControl" is undefined
-..\User\Src\main.c(15): warning:  #223-D: function "ALLTASk_BooT" declared implicitly
-..\User\Src\main.c(20): warning:  #223-D: function "IMU_update" declared implicitly
-..\User\Src\main.c(23): error:  #20: identifier "cnt" is undefined
-..\User\Src\main.c(27): warning:  #223-D: function "SendtoReferee" declared implicitly
-..\User\Src\main.c(27): error:  #20: identifier "Send_data" is undefined
-..\User\Src\main.c(28): warning:  #223-D: function "New_Send_Data" declared implicitly
-..\User\Src\main.c(5): warning:  #177-D: variable "speed_main" was declared but never referenced
+compiling Boot.c...
 compiling Clock.c...
-..\User\Src\BSP\Clock.c(65): error:  #20: identifier "Shoot_Info" is undefined
-..\User\Src\BSP\Clock.c(67): error:  #20: identifier "RampTFB" is undefined
-..\User\Src\BSP\Clock.c(68): error:  #20: identifier "RampTLF" is undefined
-..\User\Src\BSP\Clock.c(69): error:  #20: identifier "Move_UD" is undefined
-..\User\Src\BSP\Clock.c(70): error:  #20: identifier "Move_LF" is undefined
-..\User\Src\BSP\Clock.c(85): warning:  #223-D: function "Wheel_Info_Update" declared implicitly
-..\User\Src\BSP\Clock.c(87): warning:  #223-D: function "Shoot_Keep" declared implicitly
-..\User\Src\BSP\Clock.c(89): warning:  #223-D: function "Detect_shoot" declared implicitly
-..\User\Src\BSP\Clock.c(91): warning:  #223-D: function "Detect_Cap" declared implicitly
-..\User\Src\BSP\Clock.c(107): warning:  #223-D: function "Load_Motor_position_plus" declared implicitly
-..\User\Src\BSP\Clock.c(115): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\BSP\Clock.c(116): warning:  #223-D: function "Load_motor_control" declared implicitly
-..\User\Src\BSP\Clock.c(124): warning:  #223-D: function "Load_motor_control" declared implicitly
-..\User\Src\BSP\Clock.c(124): error:  #20: identifier "HitMode" is undefined
-..\User\Src\BSP\Clock.c(144): error:  #20: identifier "LED0" is undefined
-..\User\Src\BSP\Clock.c(188): error:  #20: identifier "yaw_Hold_Info" is undefined
-..\User\Src\BSP\Clock.c(189): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Clock.c(193): warning:  #223-D: function "ComeToZero" declared implicitly
-..\User\Src\BSP\Clock.c(195): warning:  #223-D: function "Wheel_Speed_control" declared implicitly
-..\User\Src\BSP\Clock.c(219): error:  #20: identifier "IsComputerControl" is undefined
-..\User\Src\BSP\Clock.c(220): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\BSP\Clock.c(222): warning:  #223-D: function "Anaconda" declared implicitly
-..\User\Src\BSP\Clock.c(232): warning:  #223-D: function "SoftReset" declared implicitly
-..\User\Src\BSP\Clock.c(241): warning:  #223-D: function "Angle_Attack" declared implicitly
-..\User\Src\BSP\Clock.c(250): error:  #20: identifier "Chassis_Control_Info" is undefined
-..\User\Src\BSP\Clock.c(252): error:  #20: identifier "time_ms_angle" is undefined
-..\User\Src\BSP\Clock.c(253): warning:  #223-D: function "Anaconda" declared implicitly
-..\User\Src\BSP\Clock.c(260): error:  #20: identifier "Chassis_Control_Info" is undefined
-..\User\Src\BSP\Clock.c(261): warning:  #223-D: function "Anaconda" declared implicitly
-..\User\Src\BSP\Clock.c(267): error:  #20: identifier "LaserAndPrep" is undefined
-..\User\Src\BSP\Clock.c(267): error:  #20: identifier "TANK_SERIAL_NUMBER" is undefined
-..\User\Src\BSP\Clock.c(269): warning:  #223-D: function "Hit_Task" declared implicitly
-..\User\Src\BSP\Clock.c(273): warning:  #223-D: function "Holder_Control" declared implicitly
-..\User\Src\BSP\Clock.c(273): error:  #20: identifier "Pitch_para" is undefined
-..\User\Src\BSP\Clock.c(273): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Clock.c(274): error:  #20: identifier "Yaw_para" is undefined
-..\User\Src\BSP\Clock.c(274): error:  #20: identifier "yaw_Hold_Info" is undefined
-..\User\Src\BSP\Clock.c(276): warning:  #223-D: function "Holder_Motor_output" declared implicitly
-..\User\Src\BSP\Clock.c(277): warning:  #223-D: function "Chassis_Control" declared implicitly
-..\User\Src\BSP\Clock.c(278): warning:  #223-D: function "Chassis_Remote_Dispack" declared implicitly
-..\User\Src\BSP\Clock.c(279): warning:  #223-D: function "Wheel_Speed_control" declared implicitly
-..\User\Src\BSP\Clock.c(286): warning:  #223-D: function "Holder_Motor_output" declared implicitly
-..\User\Src\BSP\Clock.c(287): warning:  #223-D: function "Wheel_Speed_control" declared implicitly
-..\User\Src\BSP\Clock.c(307): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Clock.c(307): error:  #20: identifier "PITCH_POSITIVE_LIMIT_ANGLE" is undefined
-..\User\Src\BSP\Clock.c(313): error:  #20: identifier "PITCH_NEGTIVE_LIMIT_ANGLE" is undefined
-..\User\Src\BSP\Clock.c(323): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\BSP\Clock.c(325): error:  #20: identifier "IsComputerControl" is undefined
-..\User\Src\BSP\Clock.c(329): error:  #20: identifier "IsComputerControl" is undefined
-..\User\Src\BSP\Clock.c(343): error:  #20: identifier "Shoot_Info" is undefined
-..\User\Src\BSP\Clock.c(382): error:  #20: identifier "RC_Ctl" is undefined
-compiling Can.c...
-..\User\Src\BSP\Can.c(41): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Can.c(46): error:  #20: identifier "Chassis_Control_Info" is undefined
-..\User\Src\BSP\Can.c(47): error:  #20: identifier "yaw_Hold_Info" is undefined
-..\User\Src\BSP\Can.c(53): error:  #20: identifier "Four_Wheel_Info" is undefined
 compiling Communication.c...
-..\User\Src\BSP\Communication.c(187): warning:  #223-D: function "ComputerControl" declared implicitly
-..\User\Src\BSP\Communication.c(189): error:  #20: identifier "yaw_Hold_Info" is undefined
-..\User\Src\BSP\Communication.c(189): error:  #20: identifier "Chassis_Control_Info" is undefined
-..\User\Src\BSP\Communication.c(211): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Communication.c(258): warning:  #223-D: function "Remote_Imitate" declared implicitly
-..\User\Src\BSP\Communication.c(260): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Communication.c(274): error:  #20: identifier "yaw_Hold_Info" is undefined
-compiling MyFunc.c...
 compiling Imu.c...
-..\User\Inc\IMU\PrepareData.h(7): error:  #5: cannot open source input file "Holder.h": No such file or directory
-compiling PrepareData.c...
-..\User\Inc\IMU\PrepareData.h(7): error:  #5: cannot open source input file "Holder.h": No such file or directory
+..\User\Src\IMU\Imu.c(47): warning:  #177-D: variable "q0q3" was declared but never referenced
+..\User\Src\IMU\Imu.c(49): warning:  #177-D: variable "q1q2" was declared but never referenced
 compiling ControlTask.c...
-..\User\Inc\Task\ControlTask.h(9): error:  #5: cannot open source input file "Remote.h": No such file or directory
-compiling CanTask.c...
-..\User\Src\Task\CanTask.c(61): error:  #20: identifier "TANK_SERIAL_NUMBER" is undefined
-..\User\Src\Task\CanTask.c(62): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\Task\CanTask.c(63): error:  #20: identifier "yaw_Hold_Info" is undefined
-..\User\Src\Task\CanTask.c(67): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\Task\CanTask.c(68): error:  #20: identifier "yaw_Hold_Info" is undefined
-..\User\Src\Task\CanTask.c(72): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\Task\CanTask.c(73): error:  #20: identifier "yaw_Hold_Info" is undefined
 compiling ComunicateTask.c...
-..\User\Src\Task\ComunicateTask.c(26): error:  #20: identifier "LaserAndPrep" is undefined
-..\User\Src\Task\ComunicateTask.c(26): error:  #20: identifier "TANK_SERIAL_NUMBER" is undefined
-..\User\Src\Task\ComunicateTask.c(42): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\Task\ComunicateTask.c(107): error:  #20: identifier "chassis_f0" is undefined
-..\User\Src\Task\ComunicateTask.c(108): error:  #20: identifier "chassis_r0" is undefined
-..\User\Src\Task\ComunicateTask.c(116): warning:  #223-D: function "abs" declared implicitly
-..\User\Src\Task\ComunicateTask.c(116): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\Task\ComunicateTask.c(144): error:  #20: identifier "chassis_f0" is undefined
-..\User\Src\Task\ComunicateTask.c(145): error:  #20: identifier "chassis_r0" is undefined
 compiling ChassisTask.c...
-..\User\Inc\Task\PidTask.h(31): warning:  #1-D: last line of file ends without a newline
-..\User\Inc\Task\ChassisTask.h(52): warning:  #1295-D: Deprecated declaration SoftReset - give arg types
-..\User\Inc\Task\ChassisTask.h(53): warning:  #1295-D: Deprecated declaration Angle_Attack - give arg types
-..\User\Src\Task\ChassisTask.c(17): error:  #70: incomplete type is not allowed
-..\User\Src\Task\ChassisTask.c(65): warning:  #223-D: function "Amplitude_Limiting" declared implicitly
-..\User\Src\Task\ChassisTask.c(99): error:  #20: identifier "Detect_Data" is undefined
-..\User\Src\Task\ChassisTask.c(124): error:  #20: identifier "Four_Wheel_Info" is undefined
-..\User\Src\Task\ChassisTask.c(133): error:  #20: identifier "Four_Wheel_Info" is undefined
-..\User\Src\Task\ChassisTask.c(235): error:  #20: identifier "yaw_Hold_Info" is undefined
 compiling PidTask.c...
-..\User\Inc\Task\PidTask.h(31): warning:  #1-D: last line of file ends without a newline
-..\User\Src\Task\PidTask.c(12): warning:  #1-D: last line of file ends without a newline
-..\User\Src\Task\PidTask.c(12): error: At end of source:  #67: expected a "}"
-compiling Referee.c...
-..\User\Inc\BSP\clock.h(33): warning:  #231-D: declaration is not visible outside of function
-..\User\Inc\BSP\clock.h(33): warning:  #231-D: declaration is not visible outside of function
-..\User\Src\Referee\Referee.c(165): error:  #20: identifier "Hit_rev" is undefined
-..\User\Src\Referee\Referee.c(265): error:  #20: identifier "Hit_rev" is undefined
-..\User\Src\Referee\Referee.c(274): error:  #20: identifier "Hit" is undefined
-..\User\Src\Referee\Referee.c(284): error:  #20: identifier "Hit" is undefined
-..\User\Src\Referee\Referee.c(246): warning:  #550-D: variable "this_time_rx_len" was set but never used
-..\User\Src\Referee\Referee.c(247): warning:  #177-D: variable "i" was declared but never referenced
-..\User\Src\Referee\Referee.c(309): warning:  #550-D: variable "this_time_rx_len" was set but never used
-..\User\Src\Referee\Referee.c(310): warning:  #177-D: variable "i" was declared but never referenced
-..\User\Src\Referee\Referee.c(605): error:  #20: identifier "FALSE" is undefined
-".\Objects\engineerVehicle.axf" - 71 Errors, 42 Warning(s).
-Target not created
+linking...
+Program Size: Code=25770 RO-data=1438 RW-data=228 ZI-data=3044  
+FromELF: creating hex file...
+".\Objects\engineerVehicle.axf" - 0 Errors, 2 Warning(s).
 Build target 'engineerVehicle'
 compiling main.c...
-..\User\Src\main.c(6): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\main.c(12): error:  #20: identifier "IsComputerControl" is undefined
-..\User\Src\main.c(15): warning:  #223-D: function "ALLTASk_BooT" declared implicitly
-..\User\Src\main.c(20): warning:  #223-D: function "IMU_update" declared implicitly
-..\User\Src\main.c(23): error:  #20: identifier "cnt" is undefined
-..\User\Src\main.c(27): warning:  #223-D: function "SendtoReferee" declared implicitly
-..\User\Src\main.c(27): error:  #20: identifier "Send_data" is undefined
-..\User\Src\main.c(28): warning:  #223-D: function "New_Send_Data" declared implicitly
-..\User\Src\main.c(5): warning:  #177-D: variable "speed_main" was declared but never referenced
+compiling Boot.c...
 compiling Clock.c...
-..\User\Src\BSP\Clock.c(65): error:  #20: identifier "Shoot_Info" is undefined
-..\User\Src\BSP\Clock.c(67): error:  #20: identifier "RampTFB" is undefined
-..\User\Src\BSP\Clock.c(68): error:  #20: identifier "RampTLF" is undefined
-..\User\Src\BSP\Clock.c(69): error:  #20: identifier "Move_UD" is undefined
-..\User\Src\BSP\Clock.c(70): error:  #20: identifier "Move_LF" is undefined
-..\User\Src\BSP\Clock.c(85): warning:  #223-D: function "Wheel_Info_Update" declared implicitly
-..\User\Src\BSP\Clock.c(87): warning:  #223-D: function "Shoot_Keep" declared implicitly
-..\User\Src\BSP\Clock.c(89): warning:  #223-D: function "Detect_shoot" declared implicitly
-..\User\Src\BSP\Clock.c(91): warning:  #223-D: function "Detect_Cap" declared implicitly
-..\User\Src\BSP\Clock.c(107): warning:  #223-D: function "Load_Motor_position_plus" declared implicitly
-..\User\Src\BSP\Clock.c(115): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\BSP\Clock.c(116): warning:  #223-D: function "Load_motor_control" declared implicitly
-..\User\Src\BSP\Clock.c(124): warning:  #223-D: function "Load_motor_control" declared implicitly
-..\User\Src\BSP\Clock.c(124): error:  #20: identifier "HitMode" is undefined
-..\User\Src\BSP\Clock.c(144): error:  #20: identifier "LED0" is undefined
-..\User\Src\BSP\Clock.c(188): error:  #20: identifier "yaw_Hold_Info" is undefined
-..\User\Src\BSP\Clock.c(189): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Clock.c(193): warning:  #223-D: function "ComeToZero" declared implicitly
-..\User\Src\BSP\Clock.c(195): warning:  #223-D: function "Wheel_Speed_control" declared implicitly
-..\User\Src\BSP\Clock.c(219): error:  #20: identifier "IsComputerControl" is undefined
-..\User\Src\BSP\Clock.c(220): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\BSP\Clock.c(222): warning:  #223-D: function "Anaconda" declared implicitly
-..\User\Src\BSP\Clock.c(232): warning:  #223-D: function "SoftReset" declared implicitly
-..\User\Src\BSP\Clock.c(241): warning:  #223-D: function "Angle_Attack" declared implicitly
-..\User\Src\BSP\Clock.c(250): error:  #20: identifier "Chassis_Control_Info" is undefined
-..\User\Src\BSP\Clock.c(252): error:  #20: identifier "time_ms_angle" is undefined
-..\User\Src\BSP\Clock.c(253): warning:  #223-D: function "Anaconda" declared implicitly
-..\User\Src\BSP\Clock.c(260): error:  #20: identifier "Chassis_Control_Info" is undefined
-..\User\Src\BSP\Clock.c(261): warning:  #223-D: function "Anaconda" declared implicitly
-..\User\Src\BSP\Clock.c(267): error:  #20: identifier "LaserAndPrep" is undefined
-..\User\Src\BSP\Clock.c(267): error:  #20: identifier "TANK_SERIAL_NUMBER" is undefined
-..\User\Src\BSP\Clock.c(269): warning:  #223-D: function "Hit_Task" declared implicitly
-..\User\Src\BSP\Clock.c(273): warning:  #223-D: function "Holder_Control" declared implicitly
-..\User\Src\BSP\Clock.c(273): error:  #20: identifier "Pitch_para" is undefined
-..\User\Src\BSP\Clock.c(273): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Clock.c(274): error:  #20: identifier "Yaw_para" is undefined
-..\User\Src\BSP\Clock.c(274): error:  #20: identifier "yaw_Hold_Info" is undefined
-..\User\Src\BSP\Clock.c(276): warning:  #223-D: function "Holder_Motor_output" declared implicitly
-..\User\Src\BSP\Clock.c(277): warning:  #223-D: function "Chassis_Control" declared implicitly
-..\User\Src\BSP\Clock.c(278): warning:  #223-D: function "Chassis_Remote_Dispack" declared implicitly
-..\User\Src\BSP\Clock.c(279): warning:  #223-D: function "Wheel_Speed_control" declared implicitly
-..\User\Src\BSP\Clock.c(286): warning:  #223-D: function "Holder_Motor_output" declared implicitly
-..\User\Src\BSP\Clock.c(287): warning:  #223-D: function "Wheel_Speed_control" declared implicitly
-..\User\Src\BSP\Clock.c(307): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Clock.c(307): error:  #20: identifier "PITCH_POSITIVE_LIMIT_ANGLE" is undefined
-..\User\Src\BSP\Clock.c(313): error:  #20: identifier "PITCH_NEGTIVE_LIMIT_ANGLE" is undefined
-..\User\Src\BSP\Clock.c(323): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\BSP\Clock.c(325): error:  #20: identifier "IsComputerControl" is undefined
-..\User\Src\BSP\Clock.c(329): error:  #20: identifier "IsComputerControl" is undefined
-..\User\Src\BSP\Clock.c(343): error:  #20: identifier "Shoot_Info" is undefined
-..\User\Src\BSP\Clock.c(382): error:  #20: identifier "RC_Ctl" is undefined
-compiling Can.c...
-..\User\Src\BSP\Can.c(41): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Can.c(46): error:  #20: identifier "Chassis_Control_Info" is undefined
-..\User\Src\BSP\Can.c(47): error:  #20: identifier "yaw_Hold_Info" is undefined
-..\User\Src\BSP\Can.c(53): error:  #20: identifier "Four_Wheel_Info" is undefined
 compiling Communication.c...
-..\User\Src\BSP\Communication.c(187): warning:  #223-D: function "ComputerControl" declared implicitly
-..\User\Src\BSP\Communication.c(189): error:  #20: identifier "yaw_Hold_Info" is undefined
-..\User\Src\BSP\Communication.c(189): error:  #20: identifier "Chassis_Control_Info" is undefined
-..\User\Src\BSP\Communication.c(211): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Communication.c(258): warning:  #223-D: function "Remote_Imitate" declared implicitly
-..\User\Src\BSP\Communication.c(260): error:  #20: identifier "Pitch_Hold_Info" is undefined
-..\User\Src\BSP\Communication.c(274): error:  #20: identifier "yaw_Hold_Info" is undefined
-compiling MyFunc.c...
 compiling Imu.c...
-..\User\Inc\IMU\PrepareData.h(7): error:  #5: cannot open source input file "Holder.h": No such file or directory
-compiling PrepareData.c...
-..\User\Inc\IMU\PrepareData.h(7): error:  #5: cannot open source input file "Holder.h": No such file or directory
+..\User\Src\IMU\Imu.c(47): warning:  #177-D: variable "q0q3" was declared but never referenced
+..\User\Src\IMU\Imu.c(49): warning:  #177-D: variable "q1q2" was declared but never referenced
 compiling ControlTask.c...
-..\User\Inc\Task\ControlTask.h(9): error:  #5: cannot open source input file "Remote.h": No such file or directory
-compiling CanTask.c...
-..\User\Src\Task\CanTask.c(6): error:  #18: expected a ")"
-..\User\Src\Task\CanTask.c(6): error:  #147-D: declaration is incompatible with "int8_t canTransfer(uint8_t, CanTxMsg *)" (declared at line 11 of "..\User\Inc\Task\CanTask.h")
-..\User\Src\Task\CanTask.c(6): error:  #141-D: unnamed prototyped parameters not allowed when body is present
-..\User\Src\Task\CanTask.c(10): error:  #20: identifier "TxMessage" is undefined
-..\User\Src\Task\CanTask.c(17): error:  #20: identifier "c1" is undefined
-..\User\Src\Task\CanTask.c(17): error:  #20: identifier "pitch_out_s16" is undefined
-..\User\Src\Task\CanTask.c(19): error:  #20: identifier "c2" is undefined
-..\User\Src\Task\CanTask.c(21): error:  #20: identifier "c3" is undefined
-..\User\Src\Task\CanTask.c(21): error:  #20: identifier "yaw_out_s16" is undefined
-..\User\Src\Task\CanTask.c(23): error:  #20: identifier "c4" is undefined
-..\User\Src\Task\CanTask.c(27): error:  #20: identifier "c1" is undefined
-..\User\Src\Task\CanTask.c(28): error:  #20: identifier "c2" is undefined
-..\User\Src\Task\CanTask.c(29): error:  #20: identifier "c3" is undefined
-..\User\Src\Task\CanTask.c(30): error:  #20: identifier "c4" is undefined
-..\User\Src\Task\CanTask.c(34): error:  #20: identifier "c3" is undefined
-..\User\Src\Task\CanTask.c(35): error:  #20: identifier "c4" is undefined
-..\User\Src\Task\CanTask.c(38): error:  #20: identifier "c1" is undefined
-..\User\Src\Task\CanTask.c(39): error:  #20: identifier "c2" is undefined
-..\User\Src\Task\CanTask.c(48): error:  #20: identifier "t" is undefined
 compiling ComunicateTask.c...
-..\User\Src\Task\ComunicateTask.c(26): error:  #20: identifier "LaserAndPrep" is undefined
-..\User\Src\Task\ComunicateTask.c(26): error:  #20: identifier "TANK_SERIAL_NUMBER" is undefined
-..\User\Src\Task\ComunicateTask.c(42): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\Task\ComunicateTask.c(107): error:  #20: identifier "chassis_f0" is undefined
-..\User\Src\Task\ComunicateTask.c(108): error:  #20: identifier "chassis_r0" is undefined
-..\User\Src\Task\ComunicateTask.c(116): warning:  #223-D: function "abs" declared implicitly
-..\User\Src\Task\ComunicateTask.c(116): error:  #20: identifier "RC_Ctl" is undefined
-..\User\Src\Task\ComunicateTask.c(144): error:  #20: identifier "chassis_f0" is undefined
-..\User\Src\Task\ComunicateTask.c(145): error:  #20: identifier "chassis_r0" is undefined
 compiling ChassisTask.c...
-..\User\Inc\Task\PidTask.h(31): warning:  #1-D: last line of file ends without a newline
-..\User\Inc\Task\ChassisTask.h(57): warning:  #1295-D: Deprecated declaration SoftReset - give arg types
-..\User\Inc\Task\ChassisTask.h(58): warning:  #1295-D: Deprecated declaration Angle_Attack - give arg types
-..\User\Src\Task\ChassisTask.c(17): error:  #70: incomplete type is not allowed
-..\User\Src\Task\ChassisTask.c(65): warning:  #223-D: function "Amplitude_Limiting" declared implicitly
-..\User\Src\Task\ChassisTask.c(99): error:  #20: identifier "Detect_Data" is undefined
-..\User\Src\Task\ChassisTask.c(124): error:  #20: identifier "Four_Wheel_Info" is undefined
-..\User\Src\Task\ChassisTask.c(133): error:  #20: identifier "Four_Wheel_Info" is undefined
-..\User\Src\Task\ChassisTask.c(235): error:  #20: identifier "yaw_Hold_Info" is undefined
 compiling PidTask.c...
-..\User\Inc\Task\PidTask.h(31): warning:  #1-D: last line of file ends without a newline
-..\User\Src\Task\PidTask.c(31): warning:  #1-D: last line of file ends without a newline
-compiling Referee.c...
-..\User\Inc\BSP\clock.h(33): warning:  #231-D: declaration is not visible outside of function
-..\User\Inc\BSP\clock.h(33): warning:  #231-D: declaration is not visible outside of function
-..\User\Src\Referee\Referee.c(165): error:  #20: identifier "Hit_rev" is undefined
-..\User\Src\Referee\Referee.c(265): error:  #20: identifier "Hit_rev" is undefined
-..\User\Src\Referee\Referee.c(274): error:  #20: identifier "Hit" is undefined
-..\User\Src\Referee\Referee.c(284): error:  #20: identifier "Hit" is undefined
-..\User\Src\Referee\Referee.c(246): warning:  #550-D: variable "this_time_rx_len" was set but never used
-..\User\Src\Referee\Referee.c(247): warning:  #177-D: variable "i" was declared but never referenced
-..\User\Src\Referee\Referee.c(309): warning:  #550-D: variable "this_time_rx_len" was set but never used
-..\User\Src\Referee\Referee.c(310): warning:  #177-D: variable "i" was declared but never referenced
-..\User\Src\Referee\Referee.c(605): error:  #20: identifier "FALSE" is undefined
-".\Objects\engineerVehicle.axf" - 82 Errors, 42 Warning(s).
-Target not created
+linking...
+Program Size: Code=25794 RO-data=1438 RW-data=228 ZI-data=3044  
+FromELF: creating hex file...
+".\Objects\engineerVehicle.axf" - 0 Errors, 2 Warning(s).
+Build target 'engineerVehicle'
+compiling main.c...
+compiling Boot.c...
+compiling Clock.c...
+compiling Communication.c...
+compiling Imu.c...
+..\User\Src\IMU\Imu.c(47): warning:  #177-D: variable "q0q3" was declared but never referenced
+..\User\Src\IMU\Imu.c(49): warning:  #177-D: variable "q1q2" was declared but never referenced
+compiling ControlTask.c...
+compiling ComunicateTask.c...
+linking...
+Program Size: Code=25802 RO-data=1438 RW-data=228 ZI-data=3044  
+FromELF: creating hex file...
+".\Objects\engineerVehicle.axf" - 0 Errors, 2 Warning(s).
+Build target 'engineerVehicle'
+linking...
+Program Size: Code=25802 RO-data=1438 RW-data=228 ZI-data=3044  
+FromELF: creating hex file...
+".\Objects\engineerVehicle.axf" - 0 Errors, 0 Warning(s).
+Build target 'engineerVehicle'
+compiling PidTask.c...
+linking...
+Program Size: Code=25802 RO-data=1438 RW-data=228 ZI-data=3044  
+FromELF: creating hex file...
+".\Objects\engineerVehicle.axf" - 0 Errors, 0 Warning(s).

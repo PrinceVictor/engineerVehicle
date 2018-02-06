@@ -37,3 +37,16 @@
 .\objects\preparedata.o: ..\Libraries\stm32f4xx_fsmc.h
 .\objects\preparedata.o: ..\User\Inc\IMU\6050.h
 .\objects\preparedata.o: ..\User\Inc\IMU\I2C.h
+.\objects\preparedata.o: ..\User\Inc\main.h
+.\objects\preparedata.o: ..\User\Inc\BSP\MyFunc.h
+.\objects\preparedata.o: ..\User\Inc\BSP\sys.h
+.\objects\preparedata.o: ..\User\Inc\BSP\delay.h
+.\objects\preparedata.o: ..\Libraries\sys.h
+.\objects\preparedata.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
+.\objects\preparedata.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h
+.\objects\preparedata.o: ..\User\Inc\IMU\Imu.h
+.\objects\preparedata.o: ..\User\Inc\BSP\Clock.h
+.\objects\preparedata.o: ..\User\Inc\Task\ComunicateTask.h
+.\objects\preparedata.o: ..\User\Inc\Task\PidTask.h
+.\objects\preparedata.o: ..\User\Inc\Task\ChassisTask.h
+.\objects\preparedata.o: ..\User\Inc\Task\ControlTask.h

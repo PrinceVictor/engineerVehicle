@@ -36,6 +36,12 @@
 .\objects\clock.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\clock.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\clock.o: ..\Libraries\stm32f4xx_fsmc.h
-.\objects\clock.o: ..\User\Inc\Referee\referee.h
+.\objects\clock.o: ..\User\Inc\BSP\MyFunc.h
+.\objects\clock.o: ..\User\Inc\BSP\delay.h
+.\objects\clock.o: ..\Libraries\sys.h
 .\objects\clock.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
-.\objects\clock.o: ..\User\Inc\BSP\clock.h
+.\objects\clock.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h
+.\objects\clock.o: ..\User\Inc\Task\ComunicateTask.h
+.\objects\clock.o: ..\User\Inc\Task\PidTask.h
+.\objects\clock.o: ..\User\Inc\Task\ChassisTask.h
+.\objects\clock.o: ..\User\Inc\Task\ControlTask.h

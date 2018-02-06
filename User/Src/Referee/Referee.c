@@ -1,9 +1,7 @@
 #include "referee.h"
-
-//#include "Define.h"
 /*-----USART3_TX-----PB10-----*/
 /*-----USART3_RX-----PB11-----*/
-#include "string.h"
+uint32_t recieveData={0};
 
 uint8_t meta_data[BSP_USART3_DMA_RX_BUF_LEN];
 
@@ -12,9 +10,6 @@ _JUDGMENT_02_DATA Judgment_02_data;
 _JUDGMENT_03_DATA Judgment_03_data;
 _JUDGMENT_04_DATA Judgment_04_data;
 
-struct _FunctionDetect_DATA Detect_Data;	
-struct _SEND_DIY_DATA  UserDefineData;
-
 //WAU:where are u?
 float temp_V,temp_A,temp_W,temp_J,temp_ss,temp_sf,temp_bs,temp_bf;
 
@@ -22,7 +17,7 @@ uint8_t Tx_Buf[TX_LEN];
 uint8_t re_data[TX_LEN];
 uint8_t Flag_Uart_Busy=0;
 
-void Referee_Configuration(void){
+void refereeConfig(void){
 
 
     USART_InitTypeDef usart2;
@@ -123,7 +118,7 @@ void Referee_Configuration(void){
 }
 
 
-void Mainfold_Receive_Configuration(void)
+void mainfoldConfig(void)
 {
     USART_InitTypeDef usart3;
 		GPIO_InitTypeDef  gpio;
@@ -162,7 +157,7 @@ void Mainfold_Receive_Configuration(void)
 		DMA_DeInit(DMA1_Stream1);
     DMA_InitStructure.DMA_Channel= DMA_Channel_4;
     DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&(USART3->DR);
-    DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)Hit_rev;//(uint32_t)EnemyData;
+    DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)recieveData;//(uint32_t)EnemyData;
     DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
     DMA_InitStructure.DMA_BufferSize = 5;   //BSP_USART3_DMA_RX_BUF_LEN;//100;
     DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
@@ -177,44 +172,17 @@ void Mainfold_Receive_Configuration(void)
     DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
     DMA_Init(DMA1_Stream1,&DMA_InitStructure);
     
-//    DMA_DeInit(DMA1_Stream3);
-//    DMA_InitStructure.DMA_Channel = DMA_Channel_4; 
-//    DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)(&USART3->DR);
-//    DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)Tx_Buf;//send buffer
-//    DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;
-//    DMA_InitStructure.DMA_BufferSize = TX_LEN; //8
-//    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
-//    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
-//    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
-//    DMA_InitStructure.DMA_MemoryDataSize = DMA_PeripheralDataSize_Byte;
-//    DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
-//    DMA_InitStructure.DMA_Priority = DMA_Priority_High; 
-//    DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;
-//    DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull;
-//    DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
-//    DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
-//    DMA_Init(DMA1_Stream3, &DMA_InitStructure);
-    
 		NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;  //TIM3中断
 		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;  //先占优先级0级
 		NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;  //从优先级3级
 		NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
 		NVIC_Init(&NVIC_InitStructure);  //初始化NVIC寄存器
     
-//    NVIC_InitStructure.NVIC_IRQChannel = DMA1_Stream3_IRQn;  
-//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;  
-//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;  
-//    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-//    NVIC_Init(&NVIC_InitStructure); 
-
     USART_ITConfig( USART3 , USART_IT_IDLE , ENABLE );//空闲中断
-//    DMA_ITConfig(DMA1_Stream3,DMA_IT_TC,ENABLE);//DMA发送中断
     
     DMA_Cmd(DMA1_Stream1,ENABLE);//RX		 
-//    DMA_Cmd(DMA1_Stream3,ENABLE);//TX
     
 		USART_DMACmd(USART3,USART_DMAReq_Rx,ENABLE);
-//    USART_DMACmd(USART3,USART_DMAReq_Tx,ENABLE);
     
 		USART_Cmd(USART3,ENABLE);
 
@@ -260,47 +228,8 @@ void USART3_IRQHandler(void)
 			DMA1_Stream1->NDTR = (uint16_t)5;     //relocate the dma memory pointer to the beginning position
 			//DMA1_Stream1->CR |= (uint32_t)(DMA_SxCR_CT);                  //enable the current selected memory is Memory 1
 			DMA_Cmd(DMA1_Stream1, ENABLE);
-		
-      //视具体协议
-			if((Hit_rev[0]  ==  0xAA )&&(Hit_rev[2]  ==  0xAB )){
-
-//				time_count = clock_cnt - dara;
-				Detect_Data.Hit_Identify_Flag = 1;
-				
-				if(Hit_rev[3] == 0x0A){
-					
-	//					if(Detect_Data.Hit_cnt > 2){
-	//				if((Detect_Data.Hit_cnt - Detect_Data.Hit_Last_cnt)>9){
-				Hit[1] = Hit_rev[1];
-				Hit[3] = Hit_rev[1];
-							
-	//					}
-	//				}
-					
-
 }
-				else if(Hit_rev[3] == 0x14){
-				
-				Hit[1] = Hit_rev[1];
-				Detect_Data.Hit_count++;
-				Hit[3] = Detect_Data.Hit_count;
-				if(Detect_Data.Hit_count > 200){
-				Detect_Data.Hit_count = 0;
-				
-			//	Detect_Data.Hit_cnt = 0;
 }
-				}
-				
-				else if(Hit_rev[1] == 0xFF){
-
-				Detect_Data.Hit_Identify_Flag = 0;
-			}
-
-				Detect_Data.Hit_Flag = 1;
-				}        
-     }
-	}
-		
 }
 
 
@@ -360,8 +289,6 @@ void USART2_IRQHandler(void)
           BYTE3(temp_J) = meta_data[41];
           
           Judgment_01_data.remainJ = temp_J;
-          Detect_Data.PowerData = Detect_Data.PowerData+1;
-					if(Detect_Data.PowerData > 1000)  Detect_Data.PowerData =0;
           break;}
         //打击信息
       
@@ -408,20 +335,12 @@ void USART2_IRQHandler(void)
 					          
 					Judgment_04_data.Robot_Color = (meta_data[7]&0x01);
 					
-					Detect_Data.MyColor = Judgment_04_data.Robot_Color;
 					
 					Judgment_04_data.Red_Base_Robot_status = (meta_data[7]&0x04)>>2;
 					Judgment_04_data.Blue_Base_Robot_status = (meta_data[7]&0x10)>>4;
-					Judgment_04_data.ResourceIsland_status = (meta_data[7]&0xC0)>>6;
-					
-					Detect_Data.ResourceIsland_status = Judgment_04_data.ResourceIsland_status;
-					
+					Judgment_04_data.ResourceIsland_status = (meta_data[7]&0xC0)>>6;				
 					Judgment_04_data.RedAirPortSta = (meta_data[8]&0x07);
-					Judgment_04_data.BlueAirPortSta = (meta_data[8]&0x70)>>4;
-					
-					Detect_Data.RedAirPortSta = Judgment_04_data.RedAirPortSta;
-					Detect_Data.BlueAirPortSta = Judgment_04_data.BlueAirPortSta;
-					
+					Judgment_04_data.BlueAirPortSta = (meta_data[8]&0x70)>>4;				
 					Judgment_04_data.No1PillarSta = (meta_data[9]&0x07);
 					Judgment_04_data.No2PillarSta = (meta_data[9]&0x70)>>4;
 					Judgment_04_data.No3PillarSta = (meta_data[10]&0x07);
@@ -436,21 +355,11 @@ void USART2_IRQHandler(void)
 					Judgment_04_data.BlueBulletAmount = (meta_data[16]&0xFF)<<8;
 					Judgment_04_data.No0BigRuneSta = (meta_data[17]&0x07);
 					Judgment_04_data.No1BigRuneSta = (meta_data[17]&0x70)>>4;
-				
-					Detect_Data.BigRune0status = Judgment_04_data.No0BigRuneSta;
-					Detect_Data.BigRune1status = Judgment_04_data.No1BigRuneSta;
-					
 					Judgment_04_data.AddDefendPrecent = (meta_data[18]&0xFF);
-
-
-
 }
       
-       }//switch
-    
-      }//协议解算部分
-      
-           
+       }//switch 
+      }//协议解算部分       
      }
 	}
 		
@@ -469,21 +378,6 @@ void SendtoReferee(uint8_t * send_data)
 	
 	send_data[5] = 0x05;
 	send_data[6] = 0x00;
-	
-	send_data[7] = BYTE0(UserDefineData.data1);
-	send_data[8] = BYTE1(UserDefineData.data1);
-	send_data[9] = BYTE2(UserDefineData.data1);
-	send_data[10] = BYTE3(UserDefineData.data1);
-	
-	send_data[11] = BYTE0(UserDefineData.data2);
-	send_data[12] = BYTE1(UserDefineData.data2);
-	send_data[13] = BYTE2(UserDefineData.data2);
-	send_data[14] = BYTE3(UserDefineData.data2);
-	
-	send_data[15] = BYTE0(UserDefineData.data3);
-	send_data[16] = BYTE1(UserDefineData.data3);
-	send_data[17] = BYTE2(UserDefineData.data3);
-	send_data[18] = BYTE3(UserDefineData.data3);
 
 	Append_CRC16_Check_Sum(send_data , 21);
 
@@ -602,7 +496,7 @@ uint32_t Verify_CRC16_Check_Sum(uint8_t *pchMessage, uint32_t dwLength)
 uint16_t wExpected = 0;
 if ((pchMessage == NULL) || (dwLength <= 2))
 {
-return FALSE;
+return 0;
 }
 wExpected = Get_CRC16_Check_Sum ( pchMessage, dwLength - 2, CRC_INIT);
 return ((wExpected & 0xff) == pchMessage[dwLength - 2] && ((wExpected >> 8) & 0xff) ==

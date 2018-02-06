@@ -41,3 +41,7 @@
 .\objects\communication.o: ..\Libraries\sys.h
 .\objects\communication.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
 .\objects\communication.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h
+.\objects\communication.o: ..\User\Inc\Task\ComunicateTask.h
+.\objects\communication.o: ..\User\Inc\Task\PidTask.h
+.\objects\communication.o: ..\User\Inc\Task\ChassisTask.h
+.\objects\communication.o: ..\User\Inc\Task\ControlTask.h

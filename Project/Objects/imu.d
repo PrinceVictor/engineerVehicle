@@ -37,10 +37,14 @@
 .\objects\imu.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\imu.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\imu.o: ..\Libraries\stm32f4xx_fsmc.h
-.\objects\imu.o: ..\User\Inc\Referee\referee.h
+.\objects\imu.o: ..\User\Inc\BSP\MyFunc.h
+.\objects\imu.o: ..\User\Inc\BSP\delay.h
+.\objects\imu.o: ..\Libraries\sys.h
 .\objects\imu.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
-.\objects\imu.o: ..\User\Inc\BSP\clock.h
 .\objects\imu.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h
-.\objects\imu.o: ..\User\Inc\IMU\PrepareData.h
+.\objects\imu.o: ..\User\Inc\Task\ComunicateTask.h
+.\objects\imu.o: ..\User\Inc\Task\PidTask.h
+.\objects\imu.o: ..\User\Inc\Task\ChassisTask.h
+.\objects\imu.o: ..\User\Inc\Task\ControlTask.h
 .\objects\imu.o: ..\User\Inc\IMU\6050.h
 .\objects\imu.o: ..\User\Inc\IMU\I2C.h

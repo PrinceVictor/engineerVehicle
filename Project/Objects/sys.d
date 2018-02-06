@@ -1,5 +1,5 @@
-.\objects\sys.o: ..\Mylib\BSP\sys.c
-.\objects\sys.o: ..\Mylib\BSP\sys.h
+.\objects\sys.o: ..\User\Src\BSP\sys.c
+.\objects\sys.o: ..\Libraries\sys.h
 .\objects\sys.o: ..\Libraries\stm32f4xx.h
 .\objects\sys.o: ..\Libraries\core_cm4.h
 .\objects\sys.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdint.h

@@ -418,19 +418,14 @@
               <FilePath>..\User\Src\BSP\delay.c</FilePath>
             </File>
             <File>
-              <FileName>BootTask.c</FileName>
+              <FileName>Boot.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\Src\BSP\BootTask.c</FilePath>
+              <FilePath>..\User\Src\BSP\Boot.c</FilePath>
             </File>
             <File>
               <FileName>Clock.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Src\BSP\Clock.c</FilePath>
-            </File>
-            <File>
-              <FileName>Can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Src\BSP\Can.c</FilePath>
             </File>
             <File>
               <FileName>Communication.c</FileName>
@@ -467,11 +462,6 @@
               <FileType>1</FileType>
               <FilePath>..\User\Src\IMU\Imu.c</FilePath>
             </File>
-            <File>
-              <FileName>PrepareData.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Src\IMU\PrepareData.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -481,11 +471,6 @@
               <FileName>ControlTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Src\Task\ControlTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>CanTask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Src\Task\CanTask.c</FilePath>
             </File>
             <File>
               <FileName>ComunicateTask.c</FileName>

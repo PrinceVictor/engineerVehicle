@@ -41,3 +41,11 @@
 .\objects\main.o: ..\Libraries\sys.h
 .\objects\main.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
 .\objects\main.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h
+.\objects\main.o: ..\User\Inc\IMU\Imu.h
+.\objects\main.o: ..\User\Inc\BSP\Clock.h
+.\objects\main.o: ..\User\Inc\Task\ComunicateTask.h
+.\objects\main.o: ..\User\Inc\Task\PidTask.h
+.\objects\main.o: ..\User\Inc\Task\ChassisTask.h
+.\objects\main.o: ..\User\Inc\Task\ControlTask.h
+.\objects\main.o: ..\User\Inc\IMU\6050.h
+.\objects\main.o: ..\User\Inc\IMU\I2C.h

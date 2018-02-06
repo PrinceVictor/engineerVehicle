@@ -1,13 +1,5 @@
 #include "Communication.h"
-void Computer_Control(void);
-void Remote_Control(void);
-uint8_t IsComputerControl =  1;//控制模式  1：电脑模式 0：手柄模式
-
-
 unsigned char sbus_rx_buffer[18];
-RC_Ctl_t RC_Ctl;
-
-#define BSP_USART1_DMA_RX_BUF_LEN	30u
 
 void can2Config(void){
 	CAN_InitTypeDef        canInit;
@@ -62,7 +54,7 @@ void can2Config(void){
 
 }
 
-void RemoteConfig(void){
+void remoteConfig(void){
 	USART_InitTypeDef USART1_InitStructure;
 	GPIO_InitTypeDef  gpio;
 	NVIC_InitTypeDef  nvic;
@@ -139,145 +131,29 @@ void USART1_IRQHandler(void)
 			DMA2_Stream2->NDTR = (uint16_t)BSP_USART1_DMA_RX_BUF_LEN;     //relocate the dma memory pointer to the beginning position
 			DMA2_Stream2->CR |= (uint32_t)(DMA_SxCR_CT);                  //enable the current selected memory is Memory 1
 			DMA_Cmd(DMA2_Stream5, ENABLE);
-      if(this_time_rx_len == 18)
-			{
-				RC_Ctl.rc.ch0 = (sbus_rx_buffer[0]| (sbus_rx_buffer[1] << 8)) & 0x07ff; //!< Channel 0
-				RC_Ctl.rc.ch1 = ((sbus_rx_buffer[1] >> 3) | (sbus_rx_buffer[2] << 5)) & 0x07ff; //!< Channel 1
-				RC_Ctl.rc.ch2 = ((sbus_rx_buffer[2] >> 6) | (sbus_rx_buffer[3] << 2) |(sbus_rx_buffer[4] << 10)) & 0x07ff; //!< Channel 2
-				RC_Ctl.rc.ch3 = ((sbus_rx_buffer[4] >> 1) | (sbus_rx_buffer[5] << 7)) & 0x07ff; //!< Channel 3
-				RC_Ctl.rc.s1 = ((sbus_rx_buffer[5] >> 4)& 0x000C) >> 2; //!< Switch left
-				RC_Ctl.rc.s2 = ((sbus_rx_buffer[5] >> 4)& 0x0003); //!< Switch right
-				RC_Ctl.mouse.x = -(sbus_rx_buffer[6] | (sbus_rx_buffer[7] << 8)); //!< Mouse X axis
-				RC_Ctl.mouse.y = sbus_rx_buffer[8] | (sbus_rx_buffer[9] << 8); //!< Mouse Y axis
-				RC_Ctl.mouse.z = sbus_rx_buffer[10] | (sbus_rx_buffer[11] << 8); //!< Mouse Z axis
-				RC_Ctl.mouse.press_l = sbus_rx_buffer[12]; //!< Mouse Left Is Press ?
-				RC_Ctl.mouse.press_r = sbus_rx_buffer[13]; //!< Mouse Right Is Press ?
-				RC_Ctl.key.v = sbus_rx_buffer[14] | (sbus_rx_buffer[15] << 8); //!< KeyBoard value
-					
-				if(IsComputerControl)
-				{
-					Computer_Control();					
-				}
-			
-				/*手动模式*/
-				else 
-				{
-					
-					Remote_Control();
-			}
-
+      if(this_time_rx_len == 18){		
+					readRemote(&remote, sbus_rx_buffer);
 		}
-		
-		else 
-		{
-
-}
-		
-				
-}       
+}  
 }
 }
 
-
-void Computer_Control(void){
-		float angle_plus;
-		float pitch_plus;
-
-	
-		ComputerControl();
-	
-		yaw_Hold_Info.can_angle = Chassis_Control_Info.Chassis_angle;
-					
-		/*yaw 向左*/
-		if( RC_Ctl.mouse.x > 0 )
-			{
-				if(yaw_Hold_Info.can_angle < LEFT_LIMINT_ANGLE)
-				{
-					yaw_Hold_Info.angle_temp = yaw_Hold_Info.angle_target + ( RC_Ctl.mouse.x ) * YAW_SENSITY ;
-				}
-			}
-			else if( RC_Ctl.mouse.x < 0 )
-			{
-				if(yaw_Hold_Info.can_angle > RIGHT_LIMINT_ANGLE)
-				{
-					yaw_Hold_Info.angle_temp = yaw_Hold_Info.angle_target + ( RC_Ctl.mouse.x ) * YAW_SENSITY ;
-				}
-			}
-
-			yaw_Hold_Info.angle_target = yaw_Hold_Info.angle_temp ;
-	
-								
-			/**********计算pitch********/
-			Pitch_Hold_Info.angle_temp = Pitch_Hold_Info.angle_target - ( RC_Ctl.mouse.y ) * PITCH_SENSITY;
-			
-			if( Pitch_Hold_Info.angle_temp > PITCH_POSITIVE_LIMIT_ANGLE)
-			{
-				Pitch_Hold_Info.angle_temp = PITCH_POSITIVE_LIMIT_ANGLE;
-			}
-			else if( Pitch_Hold_Info.angle_temp < PITCH_NEGTIVE_LIMIT_ANGLE)
-			{
-				Pitch_Hold_Info.angle_temp = PITCH_NEGTIVE_LIMIT_ANGLE;
-			}
-			Pitch_Hold_Info.angle_target = Pitch_Hold_Info.angle_temp ;
-
-				pitch_plus = -( RC_Ctl.mouse.y ) * PITCH_SENSITY ;
-	
-			
-			
-			if( pitch_plus > 0 )
-			{
-				angle_plus = my_min(  pitch_plus, (PITCH_POSITIVE_LIMIT_ANGLE - Pitch_Hold_Info.can_angle) );
-				
-				if( angle_plus < 0 )
-				{
-					angle_plus = 0;
-				}	
-				Pitch_Hold_Info.angle_temp = Pitch_Hold_Info.angle_target + angle_plus;
-				
-			}
-			
-			
-			else if( pitch_plus < 0 )
-			{
-				angle_plus = my_max( pitch_plus , (PITCH_NEGTIVE_LIMIT_ANGLE - Pitch_Hold_Info.can_angle) );
-				
-				if( angle_plus > 0 )
-				{
-					angle_plus = 0;
-				}	
-				
-				Pitch_Hold_Info.angle_temp = Pitch_Hold_Info.angle_target + angle_plus;
-			}
-			
-			Pitch_Hold_Info.angle_target = Pitch_Hold_Info.angle_temp ;					
-
+void CAN2_TX_IRQHandler(void) //CAN TX
+{
+  if (CAN_GetITStatus(CAN2,CAN_IT_TME)!= RESET)    //if transmit mailbox is empty 
+  {
+	   CAN_ClearITPendingBit(CAN2,CAN_IT_TME);   
+  }
 }
 
-void Remote_Control(void){
-				//1.处理得到控制云台角度
-				Remote_Imitate();
-	
-					Pitch_Hold_Info.angle_temp = Pitch_Hold_Info.angle_target + (-1024 + RC_Ctl.rc.ch3 ) * 0.0035f;//pitch 遥控器输入转换成角度
-		
-				
-					if( Pitch_Hold_Info.angle_temp > PITCH_POSITIVE_LIMIT_ANGLE)
-					{
-						Pitch_Hold_Info.angle_temp = PITCH_POSITIVE_LIMIT_ANGLE;
-					}
-					else if( Pitch_Hold_Info.angle_temp < PITCH_NEGTIVE_LIMIT_ANGLE)
-					{
-						Pitch_Hold_Info.angle_temp = PITCH_NEGTIVE_LIMIT_ANGLE;
-					}
-	
-					Pitch_Hold_Info.angle_target = Pitch_Hold_Info.angle_temp ;	
-					
-					yaw_Hold_Info.angle_temp = yaw_Hold_Info.angle_target + ( 1024 - RC_Ctl.rc.ch2 ) * 0.006f;//测试视觉时，注释此举
-					
-					//Amplitude_Limiting(ENABLE , yaw_Hold_Info.angle_temp , 60 , -60);
-					
-					yaw_Hold_Info.angle_target = yaw_Hold_Info.angle_temp ;
-
+void CAN2_RX0_IRQHandler(void)
+{
+  if (CAN_GetITStatus(CAN2,CAN_IT_FMP0)!= RESET)
+	{
+		CAN_ClearITPendingBit(CAN2, CAN_IT_FMP0);
+		CAN_Receive(CAN2,CAN_FIFO0,&canM.canRx);
+		transferType(2, &canM, wheelInfo.feedback.Speed);
+   }
 }
-
 
 

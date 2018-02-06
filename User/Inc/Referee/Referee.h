@@ -1,9 +1,9 @@
 #ifndef __REFEREE_H__
 #define __REFEREE_H__
 
-#include "stm32f4xx.h" 
-#include <stdio.h>
-#include "clock.h"
+#include "MyFunc.h"
+#include "string.h"
+
 #define TX_LEN 21
 
 #define BYTE0(dwTemp)       (*(char *)(&dwTemp))
@@ -21,10 +21,8 @@ typedef struct
 	float voltage_V;
 	float current_A;
 	float power_W;
-
 	uint8_t GameBegin;
-  
-  float remainJ;
+   float remainJ;
   
 }_JUDGMENT_01_DATA;
 
@@ -68,51 +66,21 @@ typedef struct
 	uint8_t AddDefendPrecent;  
 }_JUDGMENT_04_DATA;
 
-struct _SEND_DIY_DATA
+typedef struct 
 {
 	float data1;
 	float data2;
 	float data3;
   
-};
-
-struct _FunctionDetect_DATA
-{
-int PowerData_flag;   //裁判系统信息检测
-int Last_PowerData;
-int PowerData;	
-uint8_t Hit_Flag;   //大幅信息检测
-uint8_t Hit_Identify_Flag;
-uint32_t Hit_Last_cnt;
-uint32_t Hit_cnt;
-uint8_t Hit_count;
-uint8_t Load_motor_Flag;    //拨弹电机信息检测
-uint8_t Load_motor_detect_Flag;
-uint8_t Shoot_motor_Flag;   //摩擦轮信息检测
-uint8_t MyColor;
-uint8_t Data_trans_Flag;
-uint8_t ResourceIsland_status;	
-uint8_t RedAirPortSta;
-uint8_t BlueAirPortSta;
-uint8_t BigRune0status;
-uint8_t BigRune1status;	
-uint8_t Attack_HitFlag;
-uint8_t Ctrl_Quit_Flag;
-uint16_t Ctrl_Quit_count;
-uint8_t Triple_Shoot_Flag;
-uint16_t Triple_Shoot_count;
-uint8_t Triple_Shoot_Invel;
-  
-};
+}_SEND_DIY_DATA;
 
 void New_Send_Data(uint8_t *data,uint16_t size);
-void Referee_Configuration(void);
-void Mainfold_Receive_Configuration(void);
+void refereeConfig(void);
+void mainfoldConfig(void);
 extern _JUDGMENT_01_DATA Judgment_01_data;
 extern _JUDGMENT_02_DATA Judgment_02_data;
 extern _JUDGMENT_03_DATA Judgment_03_data;
-extern struct _FunctionDetect_DATA Detect_Data;
-extern struct _SEND_DIY_DATA UserDefineData;
+
 
 extern uint8_t Tx_Buf[TX_LEN];
 extern uint8_t re_data[TX_LEN]; 
@@ -123,6 +91,7 @@ uint16_t Get_CRC16_Check_Sum(uint8_t *,uint32_t ,uint16_t );
 uint32_t Verify_CRC16_Check_Sum(uint8_t *, uint32_t );
 void Append_CRC16_Check_Sum(uint8_t * ,uint32_t );
 extern void SendtoReferee(uint8_t *);
+
 #endif
 
 

@@ -1,16 +1,10 @@
 #include "6050.h"
-#include "delay.h"
-#include "Motor_out.h"
-#include "Wheel_Speed.h"
-#include "BKP_DATA.h"WADdAWW
 
 #define uint8_t u8
 #define uint16_t u16
 
 struct _sensor sensor;	
 struct _sensor sensor2;
-
-
 
 u8	mpu6050_buffer[16];					
 unsigned char TAddr;
@@ -26,9 +20,6 @@ u8 InitMPU6050(void)
 	u8 date;
 	do
 	{
-//		Holder_Motor_output(0);//Êä³öÎª0£¬½µµÍ¸ÉÈÅ
-//		Wheel_Speed_control(0);
-		
 		date = Single_Write(MPU6050_ADDRESS, PWR_MGMT_1, 0x01);  	   //ÐÝÃß
 		delay_ms(500);
 		date = Single_Write(MPU6050_ADDRESS, PWR_MGMT_1, 0x00);  	   //½â³ýÐÝÃß×´Ì¬0x00
@@ -37,14 +28,6 @@ u8 InitMPU6050(void)
 		TAddr=Single_Read(MPU6050_ADDRESS,WHO_AM_I); //count++;
 		                                  
 	}while(TAddr!=0x68);
-	
-
-	
-	
-	//³õÊ¼»¯MPU6050 1
-//	date = Single_Write(MPU6050_ADDRESS, PWR_MGMT_1, 0x01);  	   //ÐÝÃß
-//	delay_ms(500);
-//	
 	
 	date = Single_Write(MPU6050_ADDRESS, PWR_MGMT_1, 0x00);  	   //½â³ýÐÝÃß×´Ì¬0x00
 	delay_ms(50);
@@ -125,29 +108,14 @@ void Gyro_OFFEST(void)
 		  sensor.gyro.origin.x = ((((int16_t)mpu6050_buffer[8]) << 8) | mpu6050_buffer[9]);
 	    sensor.gyro.origin.y = ((((int16_t)mpu6050_buffer[10]) << 8)| mpu6050_buffer[11]);
 	    sensor.gyro.origin.z = ((((int16_t)mpu6050_buffer[12]) << 8)| mpu6050_buffer[13]);
-		  //sensor2.gyro.origin.z = ((((int16_t)mpu6050_buffer[14]) << 8)| mpu6050_buffer[15]);
-		 
 		 
       tempgx+= sensor.gyro.origin.x;
 			tempgy+= sensor.gyro.origin.y;
 			tempgz+= sensor.gyro.origin.z;
-		 
-		  //tempgz2+= sensor2.gyro.origin.z;
-		 
    }
 	 sensor.gyro.quiet.x=tempgx/cnt;
 	 sensor.gyro.quiet.y=tempgy/cnt;
 	 sensor.gyro.quiet.z=tempgz/cnt;
-	 
-	 BKP_INIT();
-	 
-	 WriteDataToBKP(BKP_ADR[0],sensor.gyro.quiet.x);
-	 WriteDataToBKP(BKP_ADR[1],sensor.gyro.quiet.y);
-	 WriteDataToBKP(BKP_ADR[2],sensor.gyro.quiet.z);
-	 
-	 
-	 //sensor2.gyro.quiet.z=tempgz2/cnt;
-	 
 }
 
 

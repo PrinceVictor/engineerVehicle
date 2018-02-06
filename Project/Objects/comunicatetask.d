@@ -1,8 +1,9 @@
 .\objects\comunicatetask.o: ..\User\Src\Task\ComunicateTask.c
 .\objects\comunicatetask.o: ..\User\Inc\Task\ComunicateTask.h
-.\objects\comunicatetask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdint.h
+.\objects\comunicatetask.o: ..\User\Inc\BSP\MyFunc.h
 .\objects\comunicatetask.o: ..\Libraries\stm32f4xx.h
 .\objects\comunicatetask.o: ..\Libraries\core_cm4.h
+.\objects\comunicatetask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdint.h
 .\objects\comunicatetask.o: ..\Libraries\core_cmInstr.h
 .\objects\comunicatetask.o: ..\Libraries\core_cmFunc.h
 .\objects\comunicatetask.o: ..\Libraries\core_cm4_simd.h
@@ -35,3 +36,10 @@
 .\objects\comunicatetask.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\comunicatetask.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\comunicatetask.o: ..\Libraries\stm32f4xx_fsmc.h
+.\objects\comunicatetask.o: ..\User\Inc\BSP\sys.h
+.\objects\comunicatetask.o: ..\User\Inc\BSP\delay.h
+.\objects\comunicatetask.o: ..\Libraries\sys.h
+.\objects\comunicatetask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
+.\objects\comunicatetask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h
+.\objects\comunicatetask.o: ..\User\Inc\Task\PidTask.h
+.\objects\comunicatetask.o: ..\User\Inc\Task\ChassisTask.h

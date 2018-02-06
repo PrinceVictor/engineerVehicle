@@ -15,17 +15,12 @@ float my_max( float a , float b )
 }
 
 //ÏŞ·ùÊä³ö
-float AmplitudeLimiting(uint8_t flag , float input , float High , float Low)
+float amplitudeLimiting(uint8_t flag , float input , float limit)
 {
-	float result;
-	
 	if( flag == 0 )	return input;
-	
-	if( input > High)	result = High;
-	else if( input < Low )	result = Low;
-	else	result = input;
-	
-	return result;
+	if( input > limit)	return limit;
+	else if( input < -limit )	return-limit;
+	else	return input;
 }
 	
 

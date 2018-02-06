@@ -1,5 +1,6 @@
 .\objects\referee.o: ..\User\Src\Referee\Referee.c
 .\objects\referee.o: ..\User\Inc\Referee\referee.h
+.\objects\referee.o: ..\User\Inc\BSP\MyFunc.h
 .\objects\referee.o: ..\Libraries\stm32f4xx.h
 .\objects\referee.o: ..\Libraries\core_cm4.h
 .\objects\referee.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdint.h
@@ -35,8 +36,9 @@
 .\objects\referee.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\referee.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\referee.o: ..\Libraries\stm32f4xx_fsmc.h
-.\objects\referee.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
-.\objects\referee.o: ..\User\Inc\BSP\clock.h
 .\objects\referee.o: ..\User\Inc\BSP\sys.h
-.\objects\referee.o: ..\User\Inc\Referee\referee.h
+.\objects\referee.o: ..\User\Inc\BSP\delay.h
+.\objects\referee.o: ..\Libraries\sys.h
+.\objects\referee.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
+.\objects\referee.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h
 .\objects\referee.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\string.h

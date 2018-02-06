@@ -1,6 +1,6 @@
-.\objects\boottask.o: ..\Mylib\BSP\BootTask.c
-.\objects\boottask.o: ..\Mylib\BSP\BootTask.h
-.\objects\boottask.o: ..\Mylib\BSP\sys.h
+.\objects\boottask.o: ..\User\Src\BSP\BootTask.c
+.\objects\boottask.o: ..\User\Inc\BSP\BootTask.h
+.\objects\boottask.o: ..\User\Inc\BSP\MyFunc.h
 .\objects\boottask.o: ..\Libraries\stm32f4xx.h
 .\objects\boottask.o: ..\Libraries\core_cm4.h
 .\objects\boottask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdint.h
@@ -36,34 +36,17 @@
 .\objects\boottask.o: ..\Libraries\stm32f4xx_dac.h
 .\objects\boottask.o: ..\Libraries\stm32f4xx_dcmi.h
 .\objects\boottask.o: ..\Libraries\stm32f4xx_fsmc.h
-.\objects\boottask.o: ..\Mylib\BSP\delay.h
+.\objects\boottask.o: ..\User\Inc\BSP\sys.h
+.\objects\boottask.o: ..\User\Inc\BSP\delay.h
 .\objects\boottask.o: ..\Libraries\sys.h
-.\objects\boottask.o: ..\Mylib\BSP\led.h
-.\objects\boottask.o: ..\Mylib\BSP\CAN2.h
-.\objects\boottask.o: ..\Mylib\IMU\I2C.h
-.\objects\boottask.o: ..\Mylib\IMU\6050.h
-.\objects\boottask.o: ..\Mylib\Task\clock.h
-.\objects\boottask.o: ..\Mylib\Referee\referee.h
 .\objects\boottask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\stdio.h
-.\objects\boottask.o: ..\Mylib\Task\clock.h
-.\objects\boottask.o: ..\Mylib\Task\ramp.h
-.\objects\boottask.o: ..\Mylib\BSP\shoot.h
-.\objects\boottask.o: ..\Vision\Hit.h
-.\objects\boottask.o: ..\Mylib\BSP\Remote.h
-.\objects\boottask.o: ..\Mylib\Task\Chassis_Control.h
-.\objects\boottask.o: ..\Mylib\IMU\Prepare_data.h
-.\objects\boottask.o: ..\Mylib\Task\Holder.h
-.\objects\boottask.o: ..\User\OtherConfig.h
-.\objects\boottask.o: ..\User\main.h
-.\objects\boottask.o: ..\Mylib\BSP\BootTask.h
-.\objects\boottask.o: ..\Mylib\IMU\Imu.h
-.\objects\boottask.o: ..\Mylib\Task\Chassis_Control.h
-.\objects\boottask.o: ..\Mylib\Task\Wheel_Speed.h
-.\objects\boottask.o: ..\Mylib\BSP\my_func.h
 .\objects\boottask.o: C:\Program Files (x86)\MDK\ARM\ARMCC\bin\..\include\math.h
-.\objects\boottask.o: ..\Mylib\Task\All_Config.h
-.\objects\boottask.o: ..\Vision\Hit_calculation.h
-.\objects\boottask.o: ..\Mylib\Task\Motor_out.h
-.\objects\boottask.o: ..\Mylib\BSP\Load_motor.h
-.\objects\boottask.o: ..\Mylib\BSP\BKP_DATA.h
-.\objects\boottask.o: ..\Mylib\BSP\MyWDG.h
+.\objects\boottask.o: ..\User\Inc\BSP\Clock.h
+.\objects\boottask.o: ..\User\Inc\Task\ComunicateTask.h
+.\objects\boottask.o: ..\User\Inc\Task\PidTask.h
+.\objects\boottask.o: ..\User\Inc\Task\ChassisTask.h
+.\objects\boottask.o: ..\User\Inc\Task\ControlTask.h
+.\objects\boottask.o: ..\User\Inc\BSP\Communication.h
+.\objects\boottask.o: ..\User\Inc\IMU\Imu.h
+.\objects\boottask.o: ..\User\Inc\IMU\6050.h
+.\objects\boottask.o: ..\User\Inc\IMU\I2C.h
