@@ -2,8 +2,9 @@
 unsigned char sbus_rx_buffer[18];
 
 void can2Config(void){
-	CAN_InitTypeDef        canInit;
-	CAN_FilterInitTypeDef  canFilter;
+	
+	CAN_InitTypeDef        can;
+	CAN_FilterInitTypeDef  can_filter;
 	GPIO_InitTypeDef       gpio;
 	NVIC_InitTypeDef       nvic;
 
@@ -25,32 +26,34 @@ void can2Config(void){
 	NVIC_Init(&nvic);
 	
 	CAN_DeInit(CAN2);
-	CAN_StructInit(&canInit);
+	CAN_StructInit(&can);
 
-	canInit.CAN_TTCM = DISABLE;
-	canInit.CAN_ABOM = DISABLE;    
-	canInit.CAN_AWUM = DISABLE;    
-	canInit.CAN_NART = DISABLE;    
-	canInit.CAN_RFLM = DISABLE;    
-	canInit.CAN_TXFP = DISABLE;     
-	canInit.CAN_Mode = CAN_Mode_Normal; 
-	canInit.CAN_SJW  = CAN_SJW_1tq;
-	canInit.CAN_BS2 = CAN_BS2_4tq;
-	canInit.CAN_Prescaler = 3;   //CAN BaudRate 42/(1+9+4)/3=1Mbps
-	CAN_Init(CAN2, &canInit);
+	can.CAN_TTCM = DISABLE;
+	can.CAN_ABOM = DISABLE;    
+	can.CAN_AWUM = DISABLE;    
+	can.CAN_NART = DISABLE;    
+	can.CAN_RFLM = DISABLE;    
+	can.CAN_TXFP = DISABLE;     
+	can.CAN_Mode = CAN_Mode_Normal; 
+	can.CAN_SJW  = CAN_SJW_1tq;
+	can.CAN_BS1 = CAN_BS1_9tq;
+	can.CAN_BS2 = CAN_BS2_4tq;
+	can.CAN_Prescaler = 3;   //CAN BaudRate 42/(1+9+4)/3=1Mbps
+	CAN_Init(CAN2, &can);
 	
-	canFilter.CAN_FilterNumber=14;
-	canFilter.CAN_FilterMode=CAN_FilterMode_IdMask;
-	canFilter.CAN_FilterScale=CAN_FilterScale_32bit;
-	canFilter.CAN_FilterIdHigh=0x0000;
-	canFilter.CAN_FilterIdLow=0x0000;
-	canFilter.CAN_FilterMaskIdHigh=0x0000;
-	canFilter.CAN_FilterMaskIdLow=0x0000;
-	canFilter.CAN_FilterFIFOAssignment=0;//the message which pass the filter save in fifo0
-	canFilter.CAN_FilterActivation=ENABLE;
-	CAN_FilterInit(&canFilter);
-	
+	can_filter.CAN_FilterNumber=14;
+	can_filter.CAN_FilterMode=CAN_FilterMode_IdMask;
+	can_filter.CAN_FilterScale=CAN_FilterScale_32bit;
+	can_filter.CAN_FilterIdHigh=0x0000;
+	can_filter.CAN_FilterIdLow=0x0000;
+	can_filter.CAN_FilterMaskIdHigh=0x0000;
+	can_filter.CAN_FilterMaskIdLow=0x0000;
+	can_filter.CAN_FilterFIFOAssignment=0;//the message which pass the filter save in fifo0
+	can_filter.CAN_FilterActivation=ENABLE;
+	CAN_FilterInit(&can_filter);
+    
 	CAN_ITConfig(CAN2,CAN_IT_FMP0,ENABLE);
+    //CAN_ITConfig(CAN2,CAN_IT_TME,ENABLE);
 
 }
 

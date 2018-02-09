@@ -77,8 +77,9 @@ int8_t remoteImitate(_RC_Ctl*,_chassis*);
 extern _RC_Ctl remote;
 float RampCal(_RampTime *RampT);
 
-#define Booting  0
-#define Running  1
-#define Stop     2
+extern _RampTime RampTFB;
+extern _RampTime RampTLF;
+extern _RampTime Move_UD ;
+extern _RampTime Move_LF ;
 
 #endif

@@ -1,7 +1,5 @@
 #include "Clock.h"
 
-int clock_cnt = 0;
-
 void sysConfig(void){
 	TIM_TimeBaseInitTypeDef tim;
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4,ENABLE);
@@ -46,7 +44,10 @@ void TIM8_BRK_TIM12_IRQHandler(void)
 		TIM_ClearITPendingBit(TIM12,TIM_IT_Update);
     TIM_ClearFlag(TIM12, TIM_FLAG_Update);
 		
-		clock_cnt ++;
+		RampTFB.clock_cnt++;
+		RampTLF.clock_cnt++;
+		Move_UD.clock_cnt++;  
+		Move_LF.clock_cnt++;
 		runControl(&sys);
 }
 }

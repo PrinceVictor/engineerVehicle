@@ -29,9 +29,10 @@ typedef struct wheelPara{
 	_feedback feedback;
 	float speedLimit;
 	float Kspeed;
+	float speed[4];
 	float targetSpeed[4];
 	float direction[4];
-	float out[4];
+	int16_t out[4];
 }_wheelPara;
 
 extern _wheelPara wheelInfo;
@@ -39,12 +40,10 @@ extern _chassis chassisPara;
 extern float wheelpid[];
 extern float chassispid[];
 
-int8_t chassisControl(uint8_t , _chassis*, _wheelPara*);
+int8_t chassisControl(uint8_t);
 int8_t wheelSolute(_wheelPara*, _chassis*);
-int8_t allParaInit(_wheelPara* , 
-										_chassis* , 
-										float* ,
-										float* );
+int8_t allParaInit(float* ,
+									float* );
 
 #endif
 

@@ -2,63 +2,67 @@
 
 _wheelPara wheelInfo = {0};
 _chassis chassisPara = {0};
+float observeData[4] = {0};
+float observeData1[4] = {0};
 
 float wheelpid[] = {
-	0,	// kp
+	10,	// kp
 	0,	// ki
 	0,	// kd
 	0,	// iLimit
-	0,	// outlimit
-	0,	// speedLimit
-	0		// Kspeed
+	1,	// enablefag
+	100,	// outlimit
+	2500,	// speedLimit
+	1			// Kspeed
+
 };
 
 float chassispid[] = {
-	0,	// kp
+	10,	// kp
 	0,	// ki
 	0,	// kd
 	0,	// iLimit
-	0		// outlimit
+	1,	// enablefag
+	0,		// outlimit     range:+- 32768
+	3,
+	2
 };
 
-int8_t allParaInit(_wheelPara* wheel, 
-									_chassis* chassis, 
-									float* paraWheel,
-									float* paraChassis)
+int8_t allParaInit(float* paraWheel,
+									 float* paraChassis)
 {
-	wheel->pid.pidInit = pidInit;
-	wheel->pid.pidInit(&wheel->pid, paraWheel);
-	wheel->speedLimit = paraWheel[5];
-	wheel->Kspeed = paraWheel[6];
+	wheelInfo.pid.pInit = pidInit;
+	wheelInfo.pid.pInit(&wheelInfo.pid, paraWheel);
+	wheelInfo.speedLimit = paraWheel[5];
+	wheelInfo.Kspeed = paraWheel[6];
 	
-	chassis->pid.pidInit = pidInit;
-	chassis->pid.pidInit(&chassis->pid, paraChassis);
+	chassisPara.pid.pInit = pidInit;
+	chassisPara.pid.pInit(&chassisPara.pid, paraChassis);
+	chassisPara.x = paraChassis[6];
+	chassisPara.y = paraChassis[7];
 	return 1;
 } 
 
 
-int8_t chassisControl(uint8_t flag, _chassis* chassis, _wheelPara* para)
+
+int8_t chassisControl(uint8_t flag)
 {	
 	int i;
-	if(flag == 0){
+	if(!flag){
 		return 0;
 }
 	else{
 	//pid for angle
-		chassis->pid.pGet(&chassis->pid, 
+		chassisPara.Rt = pidGet(&chassisPara.pid, 
 													chassisPara.yaw.target,
-													chassisPara.yaw.angle);
-		
-		chassis->Rt = \
-			chassis->pid.pCalculate(&chassisPara.pid,1,0);
+													chassisPara.yaw.angle,1,0);
 	//wheel solute
-		wheelSolute(para, chassis);
+		wheelSolute(&wheelInfo, &chassisPara);
 	//pid for wheels
 		for(i=0; i<4; i++){
-			para->pid.pGet(&para->pid,
-											para->targetSpeed[i],
-											para->feedback.Speed[i]);
-			para->out[i] = para->pid.pCalculate(&chassis->pid,1,0);
+			wheelInfo.out[i] = pidGet(&wheelInfo.pid,
+											wheelInfo.targetSpeed[i],
+											wheelInfo.feedback.Speed[i],1,0);
 		}
 	return 1;
 }

@@ -7,5 +7,6 @@
 #include "Imu.h"
 #include "Referee.h"
 
+void boot(void);
 
 #endif

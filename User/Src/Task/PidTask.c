@@ -1,25 +1,30 @@
 #include "PidTask.h"
 
+
 void pidInit(_pidStructure* pid, float* Kpid){
 	pid->p = Kpid[0];
 	pid->i = Kpid[1];
 	pid->d = Kpid[2];
 	pid->iOutLimit = Kpid[3];
-	pid->outLimit = Kpid[4];
-	pid->pGet = pidGet;
-	pid->pCalculate = pidCalculate;
+	pid->enableFlag = (uint8_t)Kpid[4];
+	pid->outLimit = Kpid[5];
 }
 
-void pidGet(_pidStructure* pid, float target, float feedback){
+void fbProcess(int16_t* data, float* processed){
+	int8_t i=0;
+	for(i =0; i<4; i++)
+		processed[i] = (float)data[i];
+}
+
+int16_t pidGet(_pidStructure* pid, 
+							float target, 
+							int16_t feedback,
+							uint8_t iFlag,
+							uint8_t dFlag){
 	pid->target = target;
-	pid->feedback = feedback;
-	pid->error = target - feedback;
-}
-
-float pidCalculate(_pidStructure* pid, 
-										uint8_t iFlag,
-										uint8_t dFlag){
-	if(pid->enableFlag == 0){
+	pid->feedback = (float)feedback;
+	pid->error = target - (float)feedback;
+if(pid->enableFlag == 0){
 		return 0;
 }
 	else{
@@ -39,5 +44,5 @@ float pidCalculate(_pidStructure* pid,
 		pid->lastError = pid->error;
 		pid->out = pid->out + pid->dOut;
 	}
-	return pid->out;
+	return (int16_t)pid->out;
 }
