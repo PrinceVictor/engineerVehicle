@@ -5,6 +5,7 @@
 #include "PidTask.h"
 #include "ChassisTask.h"
 #include "stm32f4xx_can.h"
+#include "math.h"
 
 
 #define YAW_SENSITY 0.050f		// Û±Íyaw÷·¡È√Ù∂»
@@ -48,20 +49,25 @@ typedef struct canMessage{
 typedef struct {
 		uint32_t lasttime;
 		uint32_t now;
-		uint32_t count;
+		float count;
 		float out;
-		int lastKey;
 		int isSameKey;
-		uint32_t cnt;
-		int32_t clock_cnt;
+		uint32_t clock_cnt;
 }_RampTime;
 
 typedef struct{
-	_RampTime W;
-	_RampTime S;
-	_RampTime A;
-	_RampTime D;
+	_RampTime WS;
+	_RampTime AD;
+	int lastKey;
+	uint32_t clock_cnt;
 }_moveKey;
+
+typedef struct{
+	const int16_t normal_FB;
+	const int16_t normal_LR;
+	int16_t Fb;
+	int16_t Lr;
+}_speed;
 
 int8_t canTrans(uint8_t, int8_t , _canMessage* , int16_t* );
 void transferType(int8_t , _canMessage* , int16_t* );
@@ -75,11 +81,7 @@ int8_t remoteControl(_RC_Ctl* , _chassis*);
 int8_t remoteImitate(_RC_Ctl*,_chassis*);
 
 extern _RC_Ctl remote;
+extern _moveKey key;
 float RampCal(_RampTime *RampT);
-
-extern _RampTime RampTFB;
-extern _RampTime RampTLF;
-extern _RampTime Move_UD ;
-extern _RampTime Move_LF ;
 
 #endif

@@ -1,16 +1,12 @@
 #include "ComunicateTask.h"
+_moveKey key = {0};
+_speed speed = {
+	800,
+	650,
+	0,
+	0
+};
 
-_RampTime RampTFB ;
-_RampTime RampTLF ;
-_RampTime Move_UD ;
-_RampTime Move_LF ;
-
-uint16_t NORMAL_FORWARD_BACK_SPEED 	= 720;   //640
-uint16_t NORMAL_LEFT_RIGHT_SPEED   	=	620;    //600
-const int32_t HIGH_FORWARD_BACK_SPEED 		=	650;
-const int32_t HIGH_LEFT_RIGHT_SPEED   		=	650;
-int forward_back_speed = 0;
-int left_right_speed = 0;
 _RC_Ctl remote = {0};
 _canMessage canM = {0};
 
@@ -19,6 +15,7 @@ int8_t commuiModeChange(int8_t* flag, _RC_Ctl* data, _chassis* chassis){
 	else *flag = 1;
 	if(flag) remoteControl(data , chassis); 
 	else computerControl(data , chassis);	
+	key.clock_cnt ++;
 	return 1;
 }
 
@@ -41,63 +38,49 @@ int8_t readRemote(_RC_Ctl* data, unsigned char * buffer){
 
 float RampCal(_RampTime *RampT)
 {
-	if(RampT->isSameKey ==1 )
+	if(!RampT->isSameKey )
 	{
-		RampT->now = (*RampT).clock_cnt;	
+		RampT->lasttime = key.clock_cnt;
 	}
-	else {
-		RampT->lasttime = (*RampT).clock_cnt;
-		RampT->now = (*RampT).clock_cnt;	
-	}
-	RampT->count = RampT->now  - RampT->lasttime;//按键持续的时间
-	RampT->out = (float)RampT->count / 600;
-
-	if(RampT->out > 1) RampT->out = 1;
-
-	else {
-		RampT->cnt = 0;
-}
-		if(RampT->cnt > 200) RampT->cnt =200;
+	RampT->count = (float)(key.clock_cnt - RampT->lasttime) / 100;//按键持续的时间
+	if(RampT->count > 5) RampT->out = 1;
+	else RampT->out = 1 - (float)exp(-RampT->count) ;
 	return RampT->out;
-	
 }
 
 int8_t remoteControl(_RC_Ctl* data, _chassis* chassis){
-	
-	forward_back_speed =  NORMAL_FORWARD_BACK_SPEED;
-	left_right_speed = NORMAL_LEFT_RIGHT_SPEED;
 
-	if(abs( data->rc.ch1-1024)> 50){
-			Move_UD.isSameKey = 1;
-		if(( data->rc.ch1-1024)> 50){
-		forward_back_speed = forward_back_speed*RampCal(&Move_UD);
+	if(abs( data->rc.ch1-1024)> 100){
+			key.WS.isSameKey = 1;
+		if(( data->rc.ch1-1024)> 100){
+		speed.Fb = speed.normal_FB*RampCal(&key.WS);
 		}
-		else if(( data->rc.ch1-1024)< -50){
-		forward_back_speed = -forward_back_speed*RampCal(&Move_UD);
+		else if(( data->rc.ch1-1024)< -100){
+		speed.Fb = -speed.normal_FB*RampCal(&key.WS);
 		}
 	 }
 	else{
-			Move_UD.isSameKey = 0;
-			forward_back_speed = 0; 
-			RampCal(&Move_UD);
+			key.AD.isSameKey = 0;
+			speed.Fb = 0; 
+			RampCal(&key.WS);
 	 }
 	if(abs( data->rc.ch0-1024)> 50){
-			Move_LF.isSameKey = 1;
+			key.AD.isSameKey = 1;
 		if(( data->rc.ch0-1024)> 50){
-		left_right_speed = left_right_speed*RampCal(&Move_LF);
+		speed.Lr = speed.normal_LR*RampCal(&key.AD);
 		}
 		else if(( data->rc.ch0-1024)< -50){
-		left_right_speed = -left_right_speed*RampCal(&Move_LF);
+		speed.Lr = -speed.normal_LR*RampCal(&key.AD);
 		}
 	 }
 	else{
-			Move_LF.isSameKey = 0;
-		 left_right_speed = 0;
-		 RampCal(&Move_LF);
+		 key.AD.isSameKey = 0;
+		 speed.Lr = 0;
+		 RampCal(&key.AD);
 	 }
 	
-	chassis->Fb = forward_back_speed;
-	chassis->Lr = left_right_speed;
+	chassis->Fb = speed.Fb;
+	chassis->Lr = speed.Lr;
 	
 	chassis->yaw.temp = \
 		chassis->yaw.target +( 1024 - data->rc.ch2 ) * 0.006f;//测试视觉时，注释此举
@@ -112,73 +95,62 @@ int8_t remoteControl(_RC_Ctl* data, _chassis* chassis){
 
 int8_t computerControl(_RC_Ctl* data, _chassis* chassis){
 
-	if(data->key.v & 0x10)
-	{
-		forward_back_speed =  HIGH_FORWARD_BACK_SPEED;
-		left_right_speed = HIGH_LEFT_RIGHT_SPEED;
-	}
-	else
-	{
-		forward_back_speed =  NORMAL_FORWARD_BACK_SPEED;
-		left_right_speed = NORMAL_LEFT_RIGHT_SPEED;
-	}
-	
 	if(data->key.v & 0x01)//  w
 	{
-		if(RampTFB.lastKey & 0x01){
-			RampTFB.isSameKey =1;
+		if(key.lastKey & 0x01){
+			key.WS.isSameKey =1;
 		}
 		else {
-			RampTFB.isSameKey =0;
+			key.WS.isSameKey =0;
 		}
-		forward_back_speed = forward_back_speed*RampCal(&RampTFB);
+		speed.Fb = speed.normal_FB*RampCal(&key.WS);
 	}
 	else if(data->key.v & 0x02) //   s
 	{
-		if(RampTFB.lastKey & 0x02){
-			RampTFB.isSameKey =1;
+		if(key.lastKey & 0x02){
+			key.WS.isSameKey =1;
 		}
 		else {
-			RampTFB.isSameKey =0;
+			key.WS.isSameKey =0;
 		}
-		forward_back_speed = -forward_back_speed*RampCal(&RampTFB);
+		speed.Fb = -speed.normal_FB*RampCal(&key.WS);
 	}
 	else
 	{
-		forward_back_speed=0;
-		RampTFB.isSameKey =0;
+		speed.Fb =0;
+		key.WS.isSameKey =0;
 	}
 	
 	if(data->key.v & 0x04)  //    d
 	{
-		if(RampTLF.lastKey & 0x04){
-			RampTLF.isSameKey =1;
+		if(key.lastKey & 0x04){
+			key.AD.isSameKey =1;
 		}
 		else {
-			RampTLF.isSameKey =0;
+			key.AD.isSameKey =0;
 		}
-		left_right_speed = left_right_speed*RampCal(&RampTLF);//缓慢加速的过程，按键时间超过500ms则原数输出
+		speed.Lr = speed.normal_LR*RampCal(&key.AD);//缓慢加速的过程，按键时间超过500ms则原数输出
 	}
 	else if(data->key.v & 0x08)    //   a
 	{
-		if(RampTLF.lastKey & 0x08){
-			RampTLF.isSameKey =1;
+		if(key.lastKey & 0x08){
+			key.AD.isSameKey =1;
 		}
 		else {
-			RampTLF.isSameKey =0;
+			key.AD.isSameKey =0;
 		}
-		left_right_speed = -left_right_speed*RampCal(&RampTLF);
+		speed.Lr = -speed.normal_LR*RampCal(&key.AD);
 	}
 	else
 	{
-		left_right_speed=0;
-		RampTLF.isSameKey =0;
+		speed.Lr=0;
+		key.AD.isSameKey =0;
 	}
-	RampTFB.lastKey =data->key.v;
-	RampTLF.lastKey =data->key.v;
+	
+	key.lastKey =data->key.v;
 
-	chassis->Fb = forward_back_speed;
-	chassis->Lr = -left_right_speed;
+	chassis->Fb = speed.Fb;
+	chassis->Lr = speed.Lr;
 					
 		/*yaw 向左*/
 		if( data->mouse.x > 0 )
