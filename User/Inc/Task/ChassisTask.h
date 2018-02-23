@@ -30,6 +30,8 @@ typedef struct wheelPara{
 	float speedLimit;
 	float Kspeed;
 	float speed[4];
+	float i_interval[4];
+	float p_last_error[4];
 	float targetSpeed[4];
 	float direction[4];
 	int16_t out[4];

@@ -81,6 +81,7 @@ extern _JUDGMENT_01_DATA Judgment_01_data;
 extern _JUDGMENT_02_DATA Judgment_02_data;
 extern _JUDGMENT_03_DATA Judgment_03_data;
 
+void send_odm_msg(float *);
 
 extern uint8_t Tx_Buf[TX_LEN];
 extern uint8_t re_data[TX_LEN]; 

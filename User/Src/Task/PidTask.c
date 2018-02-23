@@ -19,6 +19,8 @@ void fbProcess(int16_t* data, float* processed){
 int16_t pidGet(_pidStructure* pid, 
 							float target, 
 							int16_t feedback,
+							float* p,
+							float* p1,
 							uint8_t iFlag,
 							uint8_t dFlag){
 	pid->target = target;
@@ -32,16 +34,19 @@ if(pid->enableFlag == 0){
 		pid->out = pid->pOut;
 }
 	if(iFlag){
+		pid->out = (*p);
 		pid->interval += pid->error;
 		pid->iOut = pid->interval * pid->i;
 		amplitudeLimiting(pid->iEnable,
 											pid->iOut,
 											pid->iOutLimit);
 		pid->out = pid->out + pid->iOut;
+		(*p) = pid->out;
 	}
 	if(dFlag){
+		pid->lastError = (*p1);
 		pid->dOut = (pid->error - pid->lastError)* pid->d;
-		pid->lastError = pid->error;
+		(*p1) = pid->error;
 		pid->out = pid->out + pid->dOut;
 	}
 	return (int16_t)pid->out;

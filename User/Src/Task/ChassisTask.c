@@ -55,14 +55,14 @@ int8_t chassisControl(uint8_t flag)
 	//pid for angle
 		chassisPara.Rt = pidGet(&chassisPara.pid, 
 													chassisPara.yaw.target,
-													chassisPara.yaw.angle,1,0);
+													chassisPara.yaw.angle,&chassisPara.pid.interval,&chassisPara.pid.lastError,1,0);
 	//wheel solute
 		wheelSolute(&wheelInfo, &chassisPara);
 	//pid for wheels
 		for(i=0; i<4; i++){
 			wheelInfo.out[i] = pidGet(&wheelInfo.pid,
 											wheelInfo.targetSpeed[i],
-											wheelInfo.feedback.Speed[i],1,0);
+											wheelInfo.feedback.Speed[i], &wheelInfo.i_interval[i], &wheelInfo.p_last_error[i], 1,0);
 		}
 	return 1;
 }

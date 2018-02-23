@@ -5,5 +5,6 @@
 #include "MyFunc.h"
 #include "Imu.h"
 #include "Boot.h"
+#include "Referee.h"
 
 #endif 

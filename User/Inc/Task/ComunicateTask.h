@@ -82,6 +82,7 @@ int8_t remoteImitate(_RC_Ctl*,_chassis*);
 
 extern _RC_Ctl remote;
 extern _moveKey key;
+extern _speed speed;
 float RampCal(_RampTime *RampT);
 
 #endif

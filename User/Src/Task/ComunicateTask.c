@@ -60,7 +60,7 @@ int8_t remoteControl(_RC_Ctl* data, _chassis* chassis){
 		}
 	 }
 	else{
-			key.AD.isSameKey = 0;
+			key.WS.isSameKey = 0;
 			speed.Fb = 0; 
 			RampCal(&key.WS);
 	 }

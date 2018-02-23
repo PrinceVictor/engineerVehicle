@@ -1,6 +1,6 @@
 Dependencies for Project 'engineerVehicle', Target 'engineerVehicle': (DO NOT MODIFY !)
-F (..\User\Src\main.c)(0x5A7966E4)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries -I..\Vision -I..\User\Inc -I..\User\Src -I..\log -I..\User\Inc\BSP -I..\User\Inc\IMU -I..\User\Inc\Referee -I..\User\Inc\Task -I..\User\Src\BSP -I..\User\Src\IMU -I..\User\Src\Referee -I..\User\Src\Task-I "C:\Program Files (x86)\MDK\ARM\RV31\INC"-I "C:\Program Files (x86)\MDK\ARM\CMSIS\Include"-I "C:\Program Files (x86)\MDK\ARM\Inc\ST\STM32F4xx"-DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DSTM32F40_41xxx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (E:\RM2018\engineerVehicle\User\Inc\main.h)(0x5A796AB1)
+F (..\User\Src\main.c)(0x5A901EEA)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries -I..\Vision -I..\User\Inc -I..\User\Src -I..\log -I..\User\Inc\BSP -I..\User\Inc\IMU -I..\User\Inc\Referee -I..\User\Inc\Task -I..\User\Src\BSP -I..\User\Src\IMU -I..\User\Src\Referee -I..\User\Src\Task-I "C:\Program Files (x86)\MDK\ARM\RV31\INC"-I "C:\Program Files (x86)\MDK\ARM\CMSIS\Include"-I "C:\Program Files (x86)\MDK\ARM\Inc\ST\STM32F4xx"-DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DSTM32F40_41xxx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (E:\RM2018\engineerVehicle\User\Inc\main.h)(0x5A90189B)
 I (E:\RM2018\engineerVehicle\Libraries\stm32f4xx.h)(0x56A98FF4)
 I (E:\RM2018\engineerVehicle\Libraries\core_cm4.h)(0x53C772C2)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\stdint.h)(0x51C7B744)
@@ -43,7 +43,7 @@ I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\math.h)(0x51C7B744)
 I (E:\RM2018\engineerVehicle\User\Inc\IMU\Imu.h)(0x5A7938FB)
 I (E:\RM2018\engineerVehicle\User\Inc\BSP\Clock.h)(0x5A7881F5)
-I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A796B37)
+I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A90197F)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\PidTask.h)(0x5A7D3972)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\ChassisTask.h)(0x5A7D3F2D)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\ControlTask.h)(0x5A794E28)
@@ -51,7 +51,7 @@ I (E:\RM2018\engineerVehicle\User\Inc\IMU\6050.h)(0x5A793618)
 I (E:\RM2018\engineerVehicle\User\Inc\IMU\I2C.h)(0x57797B84)
 I (E:\RM2018\engineerVehicle\User\Inc\BSP\Boot.h)(0x5A796B59)
 I (E:\RM2018\engineerVehicle\User\Inc\BSP\Communication.h)(0x5A794452)
-I (E:\RM2018\engineerVehicle\User\Inc\Referee\Referee.h)(0x5A794452)
+I (E:\RM2018\engineerVehicle\User\Inc\Referee\Referee.h)(0x5A90189B)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\string.h)(0x51C7B744)
 F (..\log\log.txt)(0x5A76DFD9)()
 F (..\User\Src\BSP\sys.c)(0x53B4CCE4)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries -I..\Vision -I..\User\Inc -I..\User\Src -I..\log -I..\User\Inc\BSP -I..\User\Inc\IMU -I..\User\Inc\Referee -I..\User\Inc\Task -I..\User\Src\BSP -I..\User\Src\IMU -I..\User\Src\Referee -I..\User\Src\Task-I "C:\Program Files (x86)\MDK\ARM\RV31\INC"-I "C:\Program Files (x86)\MDK\ARM\CMSIS\Include"-I "C:\Program Files (x86)\MDK\ARM\Inc\ST\STM32F4xx"-DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DSTM32F40_41xxx-o .\objects\sys.o --omf_browse .\objects\sys.crf --depend .\objects\sys.d)
@@ -170,7 +170,7 @@ I (E:\RM2018\engineerVehicle\Libraries\sys.h)(0x56A9571B)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\math.h)(0x51C7B744)
 I (E:\RM2018\engineerVehicle\User\Inc\BSP\Clock.h)(0x5A7881F5)
-I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A796B37)
+I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A90197F)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\PidTask.h)(0x5A7D3972)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\ChassisTask.h)(0x5A7D3F2D)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\ControlTask.h)(0x5A794E28)
@@ -178,9 +178,9 @@ I (E:\RM2018\engineerVehicle\User\Inc\BSP\Communication.h)(0x5A794452)
 I (E:\RM2018\engineerVehicle\User\Inc\IMU\Imu.h)(0x5A7938FB)
 I (E:\RM2018\engineerVehicle\User\Inc\IMU\6050.h)(0x5A793618)
 I (E:\RM2018\engineerVehicle\User\Inc\IMU\I2C.h)(0x57797B84)
-I (E:\RM2018\engineerVehicle\User\Inc\Referee\Referee.h)(0x5A794452)
+I (E:\RM2018\engineerVehicle\User\Inc\Referee\Referee.h)(0x5A90189B)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\string.h)(0x51C7B744)
-F (..\User\Src\BSP\Clock.c)(0x5A796B37)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries -I..\Vision -I..\User\Inc -I..\User\Src -I..\log -I..\User\Inc\BSP -I..\User\Inc\IMU -I..\User\Inc\Referee -I..\User\Inc\Task -I..\User\Src\BSP -I..\User\Src\IMU -I..\User\Src\Referee -I..\User\Src\Task-I "C:\Program Files (x86)\MDK\ARM\RV31\INC"-I "C:\Program Files (x86)\MDK\ARM\CMSIS\Include"-I "C:\Program Files (x86)\MDK\ARM\Inc\ST\STM32F4xx"-DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DSTM32F40_41xxx-o .\objects\clock.o --omf_browse .\objects\clock.crf --depend .\objects\clock.d)
+F (..\User\Src\BSP\Clock.c)(0x5A82A1F1)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries -I..\Vision -I..\User\Inc -I..\User\Src -I..\log -I..\User\Inc\BSP -I..\User\Inc\IMU -I..\User\Inc\Referee -I..\User\Inc\Task -I..\User\Src\BSP -I..\User\Src\IMU -I..\User\Src\Referee -I..\User\Src\Task-I "C:\Program Files (x86)\MDK\ARM\RV31\INC"-I "C:\Program Files (x86)\MDK\ARM\CMSIS\Include"-I "C:\Program Files (x86)\MDK\ARM\Inc\ST\STM32F4xx"-DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DSTM32F40_41xxx-o .\objects\clock.o --omf_browse .\objects\clock.crf --depend .\objects\clock.d)
 I (E:\RM2018\engineerVehicle\User\Inc\BSP\Clock.h)(0x5A7881F5)
 I (E:\RM2018\engineerVehicle\User\Inc\BSP\sys.h)(0x56A9571C)
 I (E:\RM2018\engineerVehicle\Libraries\stm32f4xx.h)(0x56A98FF4)
@@ -222,11 +222,11 @@ I (E:\RM2018\engineerVehicle\User\Inc\BSP\delay.h)(0x53B7170E)
 I (E:\RM2018\engineerVehicle\Libraries\sys.h)(0x56A9571B)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\math.h)(0x51C7B744)
-I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A796B37)
+I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A90197F)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\PidTask.h)(0x5A7D3972)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\ChassisTask.h)(0x5A7D3F2D)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\ControlTask.h)(0x5A794E28)
-F (..\User\Src\BSP\Communication.c)(0x5A797001)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries -I..\Vision -I..\User\Inc -I..\User\Src -I..\log -I..\User\Inc\BSP -I..\User\Inc\IMU -I..\User\Inc\Referee -I..\User\Inc\Task -I..\User\Src\BSP -I..\User\Src\IMU -I..\User\Src\Referee -I..\User\Src\Task-I "C:\Program Files (x86)\MDK\ARM\RV31\INC"-I "C:\Program Files (x86)\MDK\ARM\CMSIS\Include"-I "C:\Program Files (x86)\MDK\ARM\Inc\ST\STM32F4xx"-DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DSTM32F40_41xxx-o .\objects\communication.o --omf_browse .\objects\communication.crf --depend .\objects\communication.d)
+F (..\User\Src\BSP\Communication.c)(0x5A829CAD)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries -I..\Vision -I..\User\Inc -I..\User\Src -I..\log -I..\User\Inc\BSP -I..\User\Inc\IMU -I..\User\Inc\Referee -I..\User\Inc\Task -I..\User\Src\BSP -I..\User\Src\IMU -I..\User\Src\Referee -I..\User\Src\Task-I "C:\Program Files (x86)\MDK\ARM\RV31\INC"-I "C:\Program Files (x86)\MDK\ARM\CMSIS\Include"-I "C:\Program Files (x86)\MDK\ARM\Inc\ST\STM32F4xx"-DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DSTM32F40_41xxx-o .\objects\communication.o --omf_browse .\objects\communication.crf --depend .\objects\communication.d)
 I (E:\RM2018\engineerVehicle\User\Inc\BSP\Communication.h)(0x5A794452)
 I (E:\RM2018\engineerVehicle\User\Inc\BSP\MyFunc.h)(0x5A78727A)
 I (E:\RM2018\engineerVehicle\Libraries\stm32f4xx.h)(0x56A98FF4)
@@ -268,7 +268,7 @@ I (E:\RM2018\engineerVehicle\User\Inc\BSP\delay.h)(0x53B7170E)
 I (E:\RM2018\engineerVehicle\Libraries\sys.h)(0x56A9571B)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\math.h)(0x51C7B744)
-I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A796B37)
+I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A90197F)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\PidTask.h)(0x5A7D3972)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\ChassisTask.h)(0x5A7D3F2D)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\ControlTask.h)(0x5A794E28)
@@ -472,7 +472,7 @@ I (E:\RM2018\engineerVehicle\User\Inc\BSP\delay.h)(0x53B7170E)
 I (E:\RM2018\engineerVehicle\Libraries\sys.h)(0x56A9571B)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\math.h)(0x51C7B744)
-I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A796B37)
+I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A90197F)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\PidTask.h)(0x5A7D3972)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\ChassisTask.h)(0x5A7D3F2D)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\ControlTask.h)(0x5A794E28)
@@ -522,9 +522,9 @@ I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\math.h)(0x51C7B744)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\ChassisTask.h)(0x5A7D3F2D)
 I (E:\RM2018\engineerVehicle\User\Inc\Task\PidTask.h)(0x5A7D3972)
-I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A796B37)
-F (..\User\Src\Task\ComunicateTask.c)(0x5A7C2F16)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries -I..\Vision -I..\User\Inc -I..\User\Src -I..\log -I..\User\Inc\BSP -I..\User\Inc\IMU -I..\User\Inc\Referee -I..\User\Inc\Task -I..\User\Src\BSP -I..\User\Src\IMU -I..\User\Src\Referee -I..\User\Src\Task-I "C:\Program Files (x86)\MDK\ARM\RV31\INC"-I "C:\Program Files (x86)\MDK\ARM\CMSIS\Include"-I "C:\Program Files (x86)\MDK\ARM\Inc\ST\STM32F4xx"-DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DSTM32F40_41xxx-o .\objects\comunicatetask.o --omf_browse .\objects\comunicatetask.crf --depend .\objects\comunicatetask.d)
-I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A796B37)
+I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A90197F)
+F (..\User\Src\Task\ComunicateTask.c)(0x5A901B64)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries -I..\Vision -I..\User\Inc -I..\User\Src -I..\log -I..\User\Inc\BSP -I..\User\Inc\IMU -I..\User\Inc\Referee -I..\User\Inc\Task -I..\User\Src\BSP -I..\User\Src\IMU -I..\User\Src\Referee -I..\User\Src\Task-I "C:\Program Files (x86)\MDK\ARM\RV31\INC"-I "C:\Program Files (x86)\MDK\ARM\CMSIS\Include"-I "C:\Program Files (x86)\MDK\ARM\Inc\ST\STM32F4xx"-DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DSTM32F40_41xxx-o .\objects\comunicatetask.o --omf_browse .\objects\comunicatetask.crf --depend .\objects\comunicatetask.d)
+I (E:\RM2018\engineerVehicle\User\Inc\Task\ComunicateTask.h)(0x5A90197F)
 I (E:\RM2018\engineerVehicle\User\Inc\BSP\MyFunc.h)(0x5A78727A)
 I (E:\RM2018\engineerVehicle\Libraries\stm32f4xx.h)(0x56A98FF4)
 I (E:\RM2018\engineerVehicle\Libraries\core_cm4.h)(0x53C772C2)
@@ -652,8 +652,8 @@ I (E:\RM2018\engineerVehicle\User\Inc\BSP\delay.h)(0x53B7170E)
 I (E:\RM2018\engineerVehicle\Libraries\sys.h)(0x56A9571B)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (C:\Program Files (x86)\MDK\ARM\ARMCC\include\math.h)(0x51C7B744)
-F (..\User\Src\Referee\Referee.c)(0x5A794452)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries -I..\Vision -I..\User\Inc -I..\User\Src -I..\log -I..\User\Inc\BSP -I..\User\Inc\IMU -I..\User\Inc\Referee -I..\User\Inc\Task -I..\User\Src\BSP -I..\User\Src\IMU -I..\User\Src\Referee -I..\User\Src\Task-I "C:\Program Files (x86)\MDK\ARM\RV31\INC"-I "C:\Program Files (x86)\MDK\ARM\CMSIS\Include"-I "C:\Program Files (x86)\MDK\ARM\Inc\ST\STM32F4xx"-DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DSTM32F40_41xxx-o .\objects\referee.o --omf_browse .\objects\referee.crf --depend .\objects\referee.d)
-I (E:\RM2018\engineerVehicle\User\Inc\Referee\referee.h)(0x5A794452)
+F (..\User\Src\Referee\Referee.c)(0x5A901A1F)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries -I..\Vision -I..\User\Inc -I..\User\Src -I..\log -I..\User\Inc\BSP -I..\User\Inc\IMU -I..\User\Inc\Referee -I..\User\Inc\Task -I..\User\Src\BSP -I..\User\Src\IMU -I..\User\Src\Referee -I..\User\Src\Task-I "C:\Program Files (x86)\MDK\ARM\RV31\INC"-I "C:\Program Files (x86)\MDK\ARM\CMSIS\Include"-I "C:\Program Files (x86)\MDK\ARM\Inc\ST\STM32F4xx"-DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DSTM32F40_41xxx-o .\objects\referee.o --omf_browse .\objects\referee.crf --depend .\objects\referee.d)
+I (E:\RM2018\engineerVehicle\User\Inc\Referee\referee.h)(0x5A90189B)
 I (E:\RM2018\engineerVehicle\User\Inc\BSP\MyFunc.h)(0x5A78727A)
 I (E:\RM2018\engineerVehicle\Libraries\stm32f4xx.h)(0x56A98FF4)
 I (E:\RM2018\engineerVehicle\Libraries\core_cm4.h)(0x53C772C2)

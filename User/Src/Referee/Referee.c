@@ -85,7 +85,7 @@ void refereeConfig(void){
     DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
     DMA_InitStructure.DMA_MemoryDataSize = DMA_PeripheralDataSize_Byte;
     DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
-    DMA_InitStructure.DMA_Priority = DMA_Priority_High; 
+    DMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh; 
     DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;
     DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull;
     DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
@@ -208,7 +208,55 @@ void New_Send_Data(uint8_t *data,uint16_t size)
   DMA_Cmd(DMA1_Stream6,ENABLE); 
 }
 
+void send_odm_msg(float * data)
+{ 
+	int i=0;
+	//PID_out;
+  uint8_t uart3_send_buff[32]; 
+	uint8_t sum=0;
+	uart3_send_buff[0] = 0xAA;
+	uart3_send_buff[1] = 0xAA;
+	uart3_send_buff[2] = 0xF1;
+	uart3_send_buff[3] = 16;
+	for(i=0;i<4;i++) 
+	{
+		uart3_send_buff[i*4+0+4] = BYTE3(*(data+i));
+		uart3_send_buff[i*4+1+4] = BYTE2(*(data+i));
+		uart3_send_buff[i*4+2+4] = BYTE1(*(data+i));
+		uart3_send_buff[i*4+3+4] = BYTE0(*(data+i));
+	}
+	for(i = 0; i<20; i++)
+		{
+			sum +=uart3_send_buff[i];
+		}
+		uart3_send_buff[20] = sum;	
+	
+	//Uart3_Put_Buf(uart3_send_buff , 21);
+    New_Send_Data(uart3_send_buff,21);
+		
+}
+
+void send_check(uint16_t data)
+{
+  uint8_t uart3_send_buff[32]; 
+	uint16_t sum=0,i;
+	uart3_send_buff[0] = 0xAA;
+	uart3_send_buff[1] = 0xAA;
+	uart3_send_buff[2] = 0xEF;
+	uart3_send_buff[3] = 2;
+  uart3_send_buff[4] = 0x10;
+  uart3_send_buff[5] = data;
+  
+  for(i=0;i<6;i++)
+  {
+    sum+=uart3_send_buff[i];
+  }
+  uart3_send_buff[6] = sum;
+  New_Send_Data(uart3_send_buff,7);
+}
+
 int dara = 0,time_count = 0;
+
 void USART3_IRQHandler(void)
 {
  static uint32_t this_time_rx_len = 0;
@@ -382,6 +430,7 @@ void SendtoReferee(uint8_t * send_data)
 	Append_CRC16_Check_Sum(send_data , 21);
 
 }
+
 
 
 //crc8 generator polynomial:G(x)=x8+x5+x4+1
