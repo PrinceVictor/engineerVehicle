@@ -120,6 +120,7 @@ void IMUupdate(float gx, float gy, float gz, float ax, float ay, float az)
     angle.roll= atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2* q2 + 1)* RtA; // roll       -pi-----pi 	
 		
 		chassisPara.yaw.angle = angle.yaw;
+		chassisPara.yaw.angle_speed = sensor.gyro.radian.z / Gyro_Gr;
 }
 
 /*更新双轴 角速度 角度 can编码器信息*/

@@ -17,7 +17,7 @@ float my_max( float a , float b )
 //ÏŞ·ùÊä³ö
 float amplitudeLimiting(uint8_t flag , float input , float limit)
 {
-	if( flag == 0 )	return input;
+	if(!flag)	return input;
 	if( input > limit)	return limit;
 	else if( input < -limit )	return-limit;
 	else	return input;

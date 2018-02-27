@@ -8,6 +8,7 @@ typedef struct{
 	float target;
 	float temp;
 	float angle;
+	float angle_speed;
 }_chassisYaw;
 
 typedef struct{
@@ -16,7 +17,8 @@ typedef struct{
 	float Rt;
 	float x,y;
 	_chassisYaw yaw;
-	_pidStructure pid;
+	_pidDouble pid;
+	uint8_t pid_flag;
 }_chassis;
 
 typedef struct{
@@ -25,13 +27,13 @@ typedef struct{
 }_feedback;
 
 typedef struct wheelPara{
-	_pidStructure pid;
+	_pid_Para kpid;
+	_pid_Out pid[4];
 	_feedback feedback;
+	uint8_t	pid_flag;
 	float speedLimit;
-	float Kspeed;
+	float K_speed;
 	float speed[4];
-	float i_interval[4];
-	float p_last_error[4];
 	float targetSpeed[4];
 	float direction[4];
 	int16_t out[4];
@@ -44,8 +46,7 @@ extern float chassispid[];
 
 int8_t chassisControl(uint8_t);
 int8_t wheelSolute(_wheelPara*, _chassis*);
-int8_t allParaInit(float* ,
-									float* );
+int8_t allParaInit();
 
 #endif
 

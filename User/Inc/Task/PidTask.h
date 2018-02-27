@@ -3,32 +3,41 @@
 
 #include "MyFunc.h"
 
-typedef struct pidStructure{
-	uint8_t enableFlag;
-	float p;
-	float	i;
-	uint8_t iEnable;
-	float interval;
-	float d;
-	float	pOut;
-	float iOut;
-	float iOutLimit;
-	float dOut;
+typedef struct pid_Para{
+	float kp;
+	float	ki;
+	float kd;
+	float i_flag;
+	float d_flag;
+	float ki_limit;
+	float outlimit;
+}_pid_Para;
+
+typedef struct pid_Out{
 	float target;
-	float lastError;
-	float error;
 	float feedback;
-	float out;
-	float outLimit;
-	void	(*pInit)(struct pidStructure* pid,
-										float* Kpid);
-}_pidStructure;
+	float p_Out;
+	float error;
+	float last_error;
+	float i_interval;
+	float	i_Out;
+	float d_Out;
+	float Out;
+}_pid_Out;
+
+typedef struct pid{
+	_pid_Out pid;
+	_pid_Para  k_para;
+}_pid;
 
 typedef	struct pidDouble{
-	_pidStructure	shell;
-	_pidStructure	core;	
+	_pid	shell;
+	_pid	core;	
 }_pidDouble;
 
-int16_t pidGet(_pidStructure* , float , int16_t, 	float* ,float* ,uint8_t ,uint8_t );
-void pidInit(_pidStructure* , float* );
+int16_t pidGet(_pid_Para* ,
+							_pid_Out* ,
+							float ,
+							int16_t,
+							uint8_t );
 #endif 

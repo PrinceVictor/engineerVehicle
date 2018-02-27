@@ -247,8 +247,8 @@
       <Focus>0</Focus>
       <ColumnNumber>30</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>15</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\Src\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -335,8 +335,8 @@
       <Focus>0</Focus>
       <ColumnNumber>23</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>23</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\Src\BSP\Clock.c</PathWithFileName>
       <FilenameWithoutPath>Clock.c</FilenameWithoutPath>
@@ -351,8 +351,8 @@
       <Focus>0</Focus>
       <ColumnNumber>33</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>2</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\Src\BSP\Communication.c</PathWithFileName>
       <FilenameWithoutPath>Communication.c</FilenameWithoutPath>
@@ -365,7 +365,7 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>5</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
@@ -461,10 +461,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>23</ColumnNumber>
+      <ColumnNumber>12</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>2</TopLine>
-      <CurrentLine>18</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\Src\Task\ControlTask.c</PathWithFileName>
       <FilenameWithoutPath>ControlTask.c</FilenameWithoutPath>
@@ -477,10 +477,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>51</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>35</TopLine>
-      <CurrentLine>47</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\Src\Task\ComunicateTask.c</PathWithFileName>
       <FilenameWithoutPath>ComunicateTask.c</FilenameWithoutPath>
@@ -493,10 +493,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>27</ColumnNumber>
+      <ColumnNumber>11</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>40</TopLine>
-      <CurrentLine>56</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>87</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\Src\Task\ChassisTask.c</PathWithFileName>
       <FilenameWithoutPath>ChassisTask.c</FilenameWithoutPath>
@@ -511,8 +511,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>19</CurrentLine>
+      <TopLine>4</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\Src\Task\PidTask.c</PathWithFileName>
       <FilenameWithoutPath>PidTask.c</FilenameWithoutPath>
@@ -535,8 +535,8 @@
       <Focus>0</Focus>
       <ColumnNumber>43</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>188</TopLine>
-      <CurrentLine>93</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\Src\Referee\Referee.c</PathWithFileName>
       <FilenameWithoutPath>Referee.c</FilenameWithoutPath>
@@ -559,8 +559,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>168</TopLine>
-      <CurrentLine>182</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Libraries\startup_stm32f40_41xxx.s</PathWithFileName>
       <FilenameWithoutPath>startup_stm32f40_41xxx.s</FilenameWithoutPath>

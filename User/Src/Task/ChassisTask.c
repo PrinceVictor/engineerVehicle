@@ -11,7 +11,7 @@ float wheelpid[] = {
 	0,	// kd
 	0,	// iLimit
 	1,	// enablefag
-	100,	// outlimit
+	100,	// outlimit   range:+- 32768
 	2500,	// speedLimit
 	1			// Kspeed
 
@@ -28,18 +28,8 @@ float chassispid[] = {
 	2
 };
 
-int8_t allParaInit(float* paraWheel,
-									 float* paraChassis)
+int8_t allParaInit(void)
 {
-	wheelInfo.pid.pInit = pidInit;
-	wheelInfo.pid.pInit(&wheelInfo.pid, paraWheel);
-	wheelInfo.speedLimit = paraWheel[5];
-	wheelInfo.Kspeed = paraWheel[6];
-	
-	chassisPara.pid.pInit = pidInit;
-	chassisPara.pid.pInit(&chassisPara.pid, paraChassis);
-	chassisPara.x = paraChassis[6];
-	chassisPara.y = paraChassis[7];
 	return 1;
 } 
 
@@ -53,16 +43,26 @@ int8_t chassisControl(uint8_t flag)
 }
 	else{
 	//pid for angle
-		chassisPara.Rt = pidGet(&chassisPara.pid, 
-													chassisPara.yaw.target,
-													chassisPara.yaw.angle,&chassisPara.pid.interval,&chassisPara.pid.lastError,1,0);
+										 pidGet(&chassisPara.pid.shell.k_para,
+														&chassisPara.pid.shell.pid,		
+														chassisPara.yaw.target,
+														chassisPara.yaw.angle,
+														chassisPara.pid_flag);
+	//pid for angle_speed
+		chassisPara.Rt = pidGet(&chassisPara.pid.core.k_para,
+														&chassisPara.pid.core.pid,		
+														chassisPara.pid.shell.pid.Out,
+														chassisPara.yaw.angle,
+														chassisPara.pid_flag);
 	//wheel solute
 		wheelSolute(&wheelInfo, &chassisPara);
 	//pid for wheels
 		for(i=0; i<4; i++){
-			wheelInfo.out[i] = pidGet(&wheelInfo.pid,
-											wheelInfo.targetSpeed[i],
-											wheelInfo.feedback.Speed[i], &wheelInfo.i_interval[i], &wheelInfo.p_last_error[i], 1,0);
+			wheelInfo.out[i] = pidGet(&wheelInfo.kpid,
+																&wheelInfo.pid[i],
+																wheelInfo.targetSpeed[i],
+																wheelInfo.feedback.Speed[i],
+																wheelInfo.pid_flag);
 		}
 	return 1;
 }
@@ -82,7 +82,7 @@ int8_t wheelSolute(_wheelPara* para, _chassis* chassis){
 	
 	for(i=0; i<4; i++ ){
 		para->targetSpeed[i] = \
-			amplitudeLimiting(1, para->direction[i]*para->Kspeed, para->speedLimit);
+			amplitudeLimiting(1, para->direction[i]*para->K_speed, para->speedLimit);
 	}
 	return 1;
 }
