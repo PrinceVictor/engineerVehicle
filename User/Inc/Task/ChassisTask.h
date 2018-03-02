@@ -6,6 +6,8 @@
 
 typedef struct{
 	float target;
+	uint8_t target_changeMode;
+	float last_target;
 	float temp;
 	float angle;
 	float angle_speed;
@@ -17,6 +19,7 @@ typedef struct{
 	float Rt;
 	float x,y;
 	_chassisYaw yaw;
+	float observe;
 	_pidDouble pid;
 	uint8_t pid_flag;
 }_chassis;
@@ -41,12 +44,10 @@ typedef struct wheelPara{
 
 extern _wheelPara wheelInfo;
 extern _chassis chassisPara;
-extern float wheelpid[];
-extern float chassispid[];
 
 int8_t chassisControl(uint8_t);
 int8_t wheelSolute(_wheelPara*, _chassis*);
-int8_t allParaInit();
+int8_t allParaInit(void);
 
 #endif
 

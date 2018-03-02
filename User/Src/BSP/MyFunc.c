@@ -36,7 +36,7 @@ float Subsection_PID(uint8_t flag , float raw , uint8_t num , float * K , float 
 	//
 	for( cnt = 0;cnt<num-1;cnt++ )
 	{
-		if( ( abs(raw) < (*(Scale + cnt + 1)) )&&( abs(raw) >= (*(Scale + cnt)) ) )
+		if( ( abs(raw) <= (*(Scale + cnt + 1)) )&&( abs(raw) > (*(Scale + cnt)) ) )
 		{
 			break;
 		}

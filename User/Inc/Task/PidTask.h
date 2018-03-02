@@ -7,10 +7,11 @@ typedef struct pid_Para{
 	float kp;
 	float	ki;
 	float kd;
-	float i_flag;
-	float d_flag;
+	uint8_t i_flag;
+	uint8_t d_flag;
 	float ki_limit;
 	float outlimit;
+	uint8_t flag;
 }_pid_Para;
 
 typedef struct pid_Out{
@@ -38,6 +39,5 @@ typedef	struct pidDouble{
 int16_t pidGet(_pid_Para* ,
 							_pid_Out* ,
 							float ,
-							int16_t,
-							uint8_t );
+							int16_t);
 #endif 

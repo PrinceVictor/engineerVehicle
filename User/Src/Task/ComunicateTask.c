@@ -1,8 +1,8 @@
 #include "ComunicateTask.h"
 _moveKey key = {0};
 _speed speed = {
-	800,
-	650,
+	200,
+	150,
 	0,
 	0
 };
@@ -10,13 +10,15 @@ _speed speed = {
 _RC_Ctl remote = {0};
 _canMessage canM = {0};
 
+
 int8_t commuiModeChange(int8_t* flag, _RC_Ctl* data, _chassis* chassis){
 	if( data->rc.s1 == 2)	*flag = 0;
 	else *flag = 1;
-	if(flag) remoteControl(data , chassis); 
+	if(data->rc.s1 == 1) return 0;
+	if(*flag) remoteControl(data , chassis); 
 	else computerControl(data , chassis);	
 	key.clock_cnt ++;
-	return 1;
+	return 2;
 }
 
 int8_t readRemote(_RC_Ctl* data, unsigned char * buffer){
@@ -49,7 +51,8 @@ float RampCal(_RampTime *RampT)
 }
 
 int8_t remoteControl(_RC_Ctl* data, _chassis* chassis){
-
+	static int count = 0;
+	
 	if(abs( data->rc.ch1-1024)> 100){
 			key.WS.isSameKey = 1;
 		if(( data->rc.ch1-1024)> 100){
@@ -64,12 +67,12 @@ int8_t remoteControl(_RC_Ctl* data, _chassis* chassis){
 			speed.Fb = 0; 
 			RampCal(&key.WS);
 	 }
-	if(abs( data->rc.ch0-1024)> 50){
+	if(abs( data->rc.ch0-1024)> 100){
 			key.AD.isSameKey = 1;
-		if(( data->rc.ch0-1024)> 50){
+		if(( data->rc.ch0-1024)> 100){
 		speed.Lr = speed.normal_LR*RampCal(&key.AD);
 		}
-		else if(( data->rc.ch0-1024)< -50){
+		else if(( data->rc.ch0-1024)< -100){
 		speed.Lr = -speed.normal_LR*RampCal(&key.AD);
 		}
 	 }
@@ -81,14 +84,19 @@ int8_t remoteControl(_RC_Ctl* data, _chassis* chassis){
 	
 	chassis->Fb = speed.Fb;
 	chassis->Lr = speed.Lr;
-	
+	if(abs( 1024 - data->rc.ch2 )< 50)  data->rc.ch2 = 1024;
 	chassis->yaw.temp = \
-		chassis->yaw.target +( 1024 - data->rc.ch2 ) * 0.006f;//测试视觉时，注释此举
+		( 1024 - data->rc.ch2 ) * 0.0005f;//测试视觉时，注释此举
+	chassis->yaw.temp = amplitudeLimiting(1 , chassis->yaw.temp , 60);
 	
-	amplitudeLimiting(1 , chassis->yaw.temp , 60);
+	chassis->yaw.target = chassis->yaw.target - chassis->yaw.temp ;
 	
-	chassis->yaw.target = chassis->yaw.temp ;
-	 
+	 if(count > 5){
+		if(chassis->yaw.target != chassis->yaw.last_target) chassis->yaw.target_changeMode = 1;
+		 else chassis-> yaw.target_changeMode =0;
+		count = 0;
+}
+	count++;
 	return 1;
 }
 
@@ -176,6 +184,10 @@ void transferType(int8_t mode, _canMessage* message, int16_t* data){
 	switch(mode){
 		case 0: 
 			for(i=0; i<4; i++){
+				message->canTx.StdId = 0x200;
+				message->canTx.IDE=CAN_ID_STD;					
+				message->canTx.RTR=CAN_RTR_DATA;				 
+				message->canTx.DLC=8;	
 				message->canTx.Data[0+i*2] = (uint8_t)(0);
 				message->canTx.Data[1+i*2] = (uint8_t)(0);
 			}

@@ -7,7 +7,8 @@ void boot(void){
 	refereeConfig();
 	can2Config();
 	delay_ms(1000);
-	
+	PMM_Init();
+	Steering_Config();
 	I2C_INIT();
 	InitMPU6050();		
 	Gyro_OFFEST();
@@ -15,7 +16,6 @@ void boot(void){
 	
 	remoteConfig();
 //	mainfoldConfig();
-	delay_ms(1000);
 	clockConfig();
 }
 

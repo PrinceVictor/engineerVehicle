@@ -1,35 +1,56 @@
 #include "ChassisTask.h"
+#include "ComunicateTask.h"
+#include "main.h"
 
 _wheelPara wheelInfo = {0};
 _chassis chassisPara = {0};
-float observeData[4] = {0};
-float observeData1[4] = {0};
 
-float wheelpid[] = {
-	10,	// kp
-	0,	// ki
+_pid_Para wheelpid = {
+	60,	// kp
+	0.75f,	// ki
 	0,	// kd
-	0,	// iLimit
-	1,	// enablefag
-	100,	// outlimit   range:+- 32768
-	2500,	// speedLimit
-	1			// Kspeed
-
+	1,	// i flag
+	0,	// d flag
+	1000,	// i limit
+	3000,	// out limit, limit range from -32768 ~ 32768
+	3	//mode flag,  0 for disable, 3 for interval isolate
 };
 
-float chassispid[] = {
-	10,	// kp
+_pid_Para chassispid_core = {
+	1.85f,	// kp
 	0,	// ki
-	0,	// kd
-	0,	// iLimit
-	1,	// enablefag
-	0,		// outlimit     range:+- 32768
-	3,
-	2
+	5.5f,	// kd
+	0,	// i flag
+	1,	// d flag
+	0,	// i limit
+	400,	// out limit
+	4	//mode flag,  0 for disable
+};
+
+_pid_Para chassispid_shell = {
+	120.0f, //180,	// kp 6.5
+	0.5f,	// ki
+	3.0f,	// kd
+	0,	// i flag
+	1,	// d flag
+	0,	// i limit
+	5000,	// out limit
+	5	//mode flag,  0 for disable
 };
 
 int8_t allParaInit(void)
 {
+	wheelInfo.kpid = wheelpid;
+	wheelInfo.K_speed = 1.0f;
+	wheelInfo.speedLimit = 400;
+	chassisPara.x = 1.0f;
+	chassisPara.y = 0.6f;
+	chassisPara.pid.shell.k_para = chassispid_shell;
+	chassisPara.pid.core.k_para = chassispid_core;
+	remote.rc.ch0 = 1024;
+	remote.rc.ch1 = 1024;
+	remote.rc.ch2 = 1024;
+	remote.rc.ch3 = 1024;
 	return 1;
 } 
 
@@ -43,17 +64,32 @@ int8_t chassisControl(uint8_t flag)
 }
 	else{
 	//pid for angle
-										 pidGet(&chassisPara.pid.shell.k_para,
+//		chassisPara.Rt = 
+			pidGet(&chassisPara.pid.shell.k_para,
 														&chassisPara.pid.shell.pid,		
 														chassisPara.yaw.target,
-														chassisPara.yaw.angle,
-														chassisPara.pid_flag);
+														chassisPara.yaw.angle);
 	//pid for angle_speed
-		chassisPara.Rt = pidGet(&chassisPara.pid.core.k_para,
+//		chassisPara.pid.shell.pid.Out =0;
+			chassisPara.Rt = \
+					pidGet(&chassisPara.pid.core.k_para,
 														&chassisPara.pid.core.pid,		
 														chassisPara.pid.shell.pid.Out,
-														chassisPara.yaw.angle,
-														chassisPara.pid_flag);
+														chassisPara.yaw.angle_speed);
+		
+		chassisPara.yaw.last_target = chassisPara.yaw.target;
+		
+		Send_data[0] = (float)chassisPara.yaw.target ; 
+		Send_data[1] = (float)chassisPara.yaw.angle;
+//		Send_data[2] = (float)wheelInfo.pid[1].Out;
+//		Send_data[3] = (float)wheelInfo.feedback.Speed[1];
+
+		Send_data[2] = (float)chassisPara.pid.core.pid.feedback; 
+		Send_data[3] = (float)chassisPara.pid.shell.pid.Out;
+//		Send_data[4] = (float)chassisPara.pid.core.pid.Out;
+		Send_data[4] = (float)chassisPara.pid.core.pid.Out;
+		
+//		chassisPara.Rt = 0;
 	//wheel solute
 		wheelSolute(&wheelInfo, &chassisPara);
 	//pid for wheels
@@ -61,9 +97,10 @@ int8_t chassisControl(uint8_t flag)
 			wheelInfo.out[i] = pidGet(&wheelInfo.kpid,
 																&wheelInfo.pid[i],
 																wheelInfo.targetSpeed[i],
-																wheelInfo.feedback.Speed[i],
-																wheelInfo.pid_flag);
+																wheelInfo.feedback.Speed[i]);
 		}
+		
+		wheelInfo.out[0] = wheelInfo.out[0] * 1.0f;
 	return 1;
 }
 }
@@ -72,18 +109,19 @@ int8_t wheelSolute(_wheelPara* para, _chassis* chassis){
 	int i;
 	
 	para->direction[0] = \
-		chassis->x*(-chassis->Fb +chassis->Lr) + chassis->Rt;
+		chassis->x*(-chassis->Fb +chassis->Lr) + chassis->y* chassis->Rt;
 	para->direction[1] = \
-		chassis->x*(chassis->Fb +chassis->Lr) + chassis->Rt;
+		chassis->x*(chassis->Fb +chassis->Lr) + chassis->y* chassis->Rt;
 	para->direction[2] = \
-		chassis->x*(chassis->Fb -chassis->Lr) + chassis->Rt;
+		chassis->x*(chassis->Fb -chassis->Lr) + chassis->y* chassis->Rt;
 	para->direction[3] = \
-		chassis->x*(-chassis->Fb -chassis->Lr) + chassis->Rt;
+		chassis->x*(-chassis->Fb -chassis->Lr) + chassis->y* chassis->Rt;
 	
 	for(i=0; i<4; i++ ){
 		para->targetSpeed[i] = \
 			amplitudeLimiting(1, para->direction[i]*para->K_speed, para->speedLimit);
-	}
+		para->feedback.Speed[i] = para->feedback.Speed[i]/19;
+}
 	return 1;
 }
 

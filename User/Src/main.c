@@ -1,5 +1,5 @@
 #include "main.h"
-float Send_data[4];
+float Send_data[5];
 
 int main(void)
 {  
@@ -7,9 +7,6 @@ int main(void)
 	boot();
 	while(1){
 		imu(1);	
-		
-		Send_data[0] = speed.Fb; 
-		Send_data[1] = speed.Lr;
 		
 		if(co_unt >30){
 			send_odm_msg(Send_data);

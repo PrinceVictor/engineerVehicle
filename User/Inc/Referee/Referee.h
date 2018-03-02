@@ -4,7 +4,7 @@
 #include "MyFunc.h"
 #include "string.h"
 
-#define TX_LEN 21
+#define TX_LEN 25
 
 #define BYTE0(dwTemp)       (*(char *)(&dwTemp))
 #define BYTE1(dwTemp)       (*((char *)(&dwTemp) + 1))

@@ -217,22 +217,21 @@ void send_odm_msg(float * data)
 	uart3_send_buff[0] = 0xAA;
 	uart3_send_buff[1] = 0xAA;
 	uart3_send_buff[2] = 0xF1;
-	uart3_send_buff[3] = 16;
-	for(i=0;i<4;i++) 
+	uart3_send_buff[3] = 20;
+	for(i=0;i<5;i++) 
 	{
 		uart3_send_buff[i*4+0+4] = BYTE3(*(data+i));
 		uart3_send_buff[i*4+1+4] = BYTE2(*(data+i));
 		uart3_send_buff[i*4+2+4] = BYTE1(*(data+i));
 		uart3_send_buff[i*4+3+4] = BYTE0(*(data+i));
 	}
-	for(i = 0; i<20; i++)
+	for(i = 0; i<24; i++)
 		{
 			sum +=uart3_send_buff[i];
 		}
-		uart3_send_buff[20] = sum;	
-	
-	//Uart3_Put_Buf(uart3_send_buff , 21);
-    New_Send_Data(uart3_send_buff,21);
+		uart3_send_buff[24] = sum;	
+
+    New_Send_Data(uart3_send_buff,25);
 		
 }
 

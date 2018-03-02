@@ -1,13 +1,17 @@
 #include "Imu.h"
 
+#define GYRO_GAP 30
+#define K_ANGLESPEED_2_ANGLE 0.00003272f
+
 _angle angle;
 volatile uint32_t lastUpdate, now; // 采样周期计数 单位 us
 float q0 = 1, q1 = 0, q2 = 0, q3 = 0;    // quaternion elements representing the estimated orientation
 float exInt = 0, eyInt = 0, ezInt = 0;    // scaled integral error
-
-static double KalmanFilter_x(const double ResrcData,double ProcessNiose_Q,double MeasureNoise_R);
-static double KalmanFilter_y(const double ResrcData,double ProcessNiose_Q,double MeasureNoise_R);
-static double KalmanFilter_z(const double ResrcData,double ProcessNiose_Q,double MeasureNoise_R);
+float Q = 0.05f, R = 1.5f;
+static double KalmanFilter_x(const double ,double ,double );
+static double KalmanFilter_y(const double ,double ,double );
+static double KalmanFilter_z(const double ,double ,double );
+static double KalmanFilter_speed(const double ,double ,double );
 
 uint8_t mpu6050_error_flag = 0;
 
@@ -35,6 +39,7 @@ void imu(int8_t flag){
 
 void IMUupdate(float gx, float gy, float gz, float ax, float ay, float az)
 {
+		int i =0;
     float norm;
 //    float hx, hy, hz, bx, bz;
     float vx, vy, vz;//, wx, wy, wz;
@@ -119,8 +124,13 @@ void IMUupdate(float gx, float gy, float gz, float ax, float ay, float az)
     angle.pitch= -asin(-2 * q1 * q3 + 2 * q0 * q2)*RtA; // pitch    -pi/2    --- pi/2 
     angle.roll= atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2* q2 + 1)* RtA; // roll       -pi-----pi 	
 		
-		chassisPara.yaw.angle = angle.yaw;
-		chassisPara.yaw.angle_speed = sensor.gyro.radian.z / Gyro_Gr;
+		chassisPara.yaw.angle_speed = - sensor.gyro.radian.z / Gyro_Gr;
+	if(  abs( chassisPara.yaw.angle_speed ) < GYRO_GAP)
+	{
+		chassisPara.yaw.angle_speed = 0;
+	}
+	
+	chassisPara.yaw.angle += ( chassisPara.yaw.angle_speed * K_ANGLESPEED_2_ANGLE  );
 }
 
 /*更新双轴 角速度 角度 can编码器信息*/
@@ -243,3 +253,27 @@ static double KalmanFilter_z(const double ResrcData,double ProcessNiose_Q,double
    x_last = x_now; //更新系统状态值
    return x_now;                
 }
+
+static double KalmanFilter_speed(const double ResrcData,double ProcessNiose_Q,double MeasureNoise_R)
+{
+   double R = MeasureNoise_R;
+   double Q = ProcessNiose_Q;
+   static double x_last;
+   double x_mid = x_last;
+   double x_now;
+   static double p_last;
+   double p_mid ;
+   double p_now;
+   double kg;        
+
+   x_mid=x_last; //x_last=x(k-1|k-1),x_mid=x(k|k-1)
+   p_mid=p_last+Q; //p_mid=p(k|k-1),p_last=p(k-1|k-1),Q=噪声
+   kg=p_mid/(p_mid+R); //kg为kalman filter，R为噪声
+   x_now=x_mid+kg*(ResrcData-x_mid);//估计出的最优值
+                
+   p_now=(1-kg)*p_mid;//最优值对应的covariance       
+   p_last = p_now; //更新covariance值
+   x_last = x_now; //更新系统状态值
+   return x_now;                
+}
+

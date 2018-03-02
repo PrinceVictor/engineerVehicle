@@ -1,5 +1,5 @@
-#ifndef __COMUNICATETASK_H__
-#define __COMUNICATETASK_H__
+#ifndef __COMUNICATETASK_H_
+#define __COMUNICATETASK_H_
 
 #include "MyFunc.h"
 #include "PidTask.h"
@@ -37,8 +37,7 @@ typedef struct RC_Ctl
 	{
 		uint16_t v;
 	}key;
-	int8_t (*process)(struct RC_Ctl* data,
-										unsigned char* buffer);
+
 }_RC_Ctl;
 
 typedef struct canMessage{

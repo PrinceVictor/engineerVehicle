@@ -1,6 +1,68 @@
 #include "Communication.h"
 unsigned char sbus_rx_buffer[18];
 
+void Steering_Config(void)
+{
+	
+		GPIO_InitTypeDef GPIO_InitStructure;
+		TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
+		TIM_OCInitTypeDef  TIM_OCInitStructure;
+
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE); 	
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+		
+		GPIO_PinAFConfig(GPIOB,GPIO_PinSource1,GPIO_AF_TIM3); 
+		
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;           
+		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;        
+		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	
+		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;      
+		GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;      
+		GPIO_Init(GPIOB,&GPIO_InitStructure);    
+		
+		TIM_TimeBaseStructure.TIM_Prescaler=8400-1;  //?????
+		TIM_TimeBaseStructure.TIM_CounterMode=TIM_CounterMode_Up; //??????
+		TIM_TimeBaseStructure.TIM_Period=200-1;   //??????
+		TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1; 
+		
+		TIM_TimeBaseInit(TIM3,&TIM_TimeBaseStructure);
+		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1; 
+    TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable; 
+    TIM_OCInitStructure.TIM_Pulse = 0; 
+    TIM_OCInitStructure.TIM_OCPolarity = TIM_OCNPolarity_Low;
+    TIM_OCInitStructure.TIM_OCNPolarity = TIM_OCNPolarity_High; 
+    TIM_OCInitStructure.TIM_OCIdleState = TIM_OCIdleState_Set;
+    TIM_OCInitStructure.TIM_OCNIdleState = TIM_OCNIdleState_Reset; 
+ 
+    TIM_OC4Init(TIM3, &TIM_OCInitStructure);  
+    TIM_OC4PreloadConfig(TIM3, TIM_OCPreload_Enable);     
+   
+    TIM_CtrlPWMOutputs(TIM3,ENABLE);  
+    TIM_ARRPreloadConfig(TIM3, ENABLE);
+    TIM_Cmd(TIM3, ENABLE);
+
+}
+
+
+/*******************************************************************************
+* Function Name  : PMM_IO INIT
+* Description    : ???? 
+* Input          : None 
+* Output         : None
+* Return         : None
+****************************************************************************** */
+void PMM_Init(void)
+{
+	GPIO_InitTypeDef GPIO_InitStructure;
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE );
+  
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1; 	
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_Init(GPIOA, &GPIO_InitStructure); 
+}
+
 void can2Config(void){
 	
 	CAN_InitTypeDef        can;

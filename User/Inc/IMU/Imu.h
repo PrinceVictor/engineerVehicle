@@ -7,6 +7,7 @@
 #include "6050.h"
 #include "ChassisTask.h"
 
+#define GYRO_FILTER_NUM 10
 #define Kp 1.0f                        // proportional gain governs rate of convergence to accelerometer/magnetometer
 #define Kii 0.01f                     // integral gain governs rate of convergence of gyroscope biases
 #define KALMAN_Q        0.02

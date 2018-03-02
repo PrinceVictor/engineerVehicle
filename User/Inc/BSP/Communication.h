@@ -8,6 +8,9 @@
 void can2Config(void);
 void remoteConfig(void);
 
+void PMM_Init(void);
+void Steering_Config(void);
+
 #define BSP_USART1_DMA_RX_BUF_LEN	30u
 
 #define YAW_SENSITY 0.050f		// Û±Íyaw÷·¡È√Ù∂»
