@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>engineerVehicle</OutputName>
+          <OutputName>engineer_chassis</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -486,6 +486,11 @@
               <FileName>PidTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Src\Task\PidTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>holder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\Src\Task\holder.c</FilePath>
             </File>
           </Files>
         </Group>

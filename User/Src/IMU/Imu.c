@@ -1,7 +1,7 @@
 #include "Imu.h"
 
 #define GYRO_GAP 30
-#define K_ANGLESPEED_2_ANGLE 0.00003272f
+#define K_ANGLESPEED_2_ANGLE 0.0000305f
 
 _angle angle;
 volatile uint32_t lastUpdate, now; // 采样周期计数 单位 us
@@ -124,13 +124,13 @@ void IMUupdate(float gx, float gy, float gz, float ax, float ay, float az)
     angle.pitch= -asin(-2 * q1 * q3 + 2 * q0 * q2)*RtA; // pitch    -pi/2    --- pi/2 
     angle.roll= atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2* q2 + 1)* RtA; // roll       -pi-----pi 	
 		
-		chassisPara.yaw.angle_speed = - sensor.gyro.radian.z / Gyro_Gr;
+		chassisPara.yaw.angle_speed = - sensor.gyro.radian.z / Gyro_Gr / 32768.0f ;
 	if(  abs( chassisPara.yaw.angle_speed ) < GYRO_GAP)
 	{
 		chassisPara.yaw.angle_speed = 0;
 	}
 	
-	chassisPara.yaw.angle += ( chassisPara.yaw.angle_speed * K_ANGLESPEED_2_ANGLE  );
+	chassisPara.yaw.angle += chassisPara.yaw.angle_speed ;
 }
 
 /*更新双轴 角速度 角度 can编码器信息*/
@@ -173,7 +173,7 @@ void readIMU(uint8_t flag)
 		
 		gyro_filter_cnt = ( gyro_filter_cnt + 1 ) % GYRO_FILTER_NUM;
 		
-		sensor.gyro.radian.x  = sumx / (float)GYRO_FILTER_NUM * Gyro_Gr;
+		sensor.gyro.radian.x  = sumx / (float)GYRO_FILTER_NUM * Gyro_Gr;    //radian speed  unit: pi/s
 		sensor.gyro.radian.y  = sumy / (float)GYRO_FILTER_NUM * Gyro_Gr;
 		sensor.gyro.radian.z  = sumz / (float)GYRO_FILTER_NUM * Gyro_Gr;
 			

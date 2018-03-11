@@ -16,17 +16,19 @@ int8_t runControl(_sysState* sys){
 			break;
 		}
 		case run:{
-			if(PAin(1)==0 && duoji_flag==0)
-				{
-					TIM_SetCompare4(TIM3,11);//11,22
-					duoji_flag=1;
-				}
-	
-			if(remote.rc.s2==1)
-				{
-					TIM_SetCompare4(TIM3,22);
-					duoji_flag=0;
-				}
+			#if 0
+//			if(PAin(1)==0 && duoji_flag==0)
+//				{
+//					TIM_SetCompare4(TIM3,11);//11,22
+//					duoji_flag=1;
+//				}
+//	
+//			if(remote.rc.s2==1)
+//				{
+//					TIM_SetCompare4(TIM3,22);
+//					duoji_flag=0;
+//				}
+			#endif
 			sys->state = commuiModeChange(&sys->remoteOrkeyboard,
 															&remote, 
 															&chassisPara);

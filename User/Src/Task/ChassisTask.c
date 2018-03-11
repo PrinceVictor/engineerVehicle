@@ -28,13 +28,13 @@ _pid_Para chassispid_core = {
 };
 
 _pid_Para chassispid_shell = {
-	120.0f, //180,	// kp 6.5
+	12.0f, //180,	// kp 6.5
 	0.5f,	// ki
 	3.0f,	// kd
 	0,	// i flag
 	1,	// d flag
 	0,	// i limit
-	5000,	// out limit
+	50,	// out limit
 	5	//mode flag,  0 for disable
 };
 
@@ -99,8 +99,6 @@ int8_t chassisControl(uint8_t flag)
 																wheelInfo.targetSpeed[i],
 																wheelInfo.feedback.Speed[i]);
 		}
-		
-		wheelInfo.out[0] = wheelInfo.out[0] * 1.0f;
 	return 1;
 }
 }
