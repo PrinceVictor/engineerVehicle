@@ -1,6 +1,5 @@
 #include "IWDG.h"
 
-
 void MyDog_Config(uint8_t flag)
 {
 	if(flag == 1)

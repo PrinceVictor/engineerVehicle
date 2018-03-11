@@ -4,17 +4,18 @@
 void boot(void){
 	
 	delay_init(168);
-	refereeConfig();
+//	refereeConfig();
 	can2Config();
+	IO_Init();
 	delay_ms(1000);
-	PMM_Init();
-	Steering_Config();
-	I2C_INIT();
-	InitMPU6050();		
-	Gyro_OFFEST();
+//	PMM_Init();
+//	Steering_Config();
+//	I2C_INIT();
+//	InitMPU6050();		
+//	Gyro_OFFEST();
 	sysConfig();
 	
-	remoteConfig();
+//	remoteConfig();
 //	mainfoldConfig();
 	clockConfig();
 }

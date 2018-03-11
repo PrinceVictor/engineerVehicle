@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>engineerVehicle</TargetName>
+      <TargetName>engineerChassis</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>
@@ -423,6 +423,11 @@
               <FilePath>..\User\Src\BSP\Boot.c</FilePath>
             </File>
             <File>
+              <FileName>IO.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\Src\BSP\IO.c</FilePath>
+            </File>
+            <File>
               <FileName>Clock.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Src\BSP\Clock.c</FilePath>
@@ -445,26 +450,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Imu</GroupName>
-          <Files>
-            <File>
-              <FileName>6050.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Src\IMU\6050.c</FilePath>
-            </File>
-            <File>
-              <FileName>I2C.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Src\IMU\I2C.c</FilePath>
-            </File>
-            <File>
-              <FileName>Imu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Src\IMU\Imu.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Task</GroupName>
           <Files>
             <File>
@@ -478,19 +463,9 @@
               <FilePath>..\User\Src\Task\ComunicateTask.c</FilePath>
             </File>
             <File>
-              <FileName>ChassisTask.c</FileName>
+              <FileName>RelayControl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\Src\Task\ChassisTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>PidTask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Src\Task\PidTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>holder.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Src\Task\holder.c</FilePath>
+              <FilePath>..\User\Src\Task\RelayControl.c</FilePath>
             </File>
           </Files>
         </Group>
